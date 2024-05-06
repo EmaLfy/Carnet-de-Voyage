@@ -1,28 +1,22 @@
 package appli.carnet;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Carnet {
-    private Date debut;
-    private Date fin;
+    private LocalDate debut;
     private Page[] pages;
     private int nbPages;
 
-    public Carnet(Date d,Date f) {
+    public Carnet(LocalDate d, int nbJ) {
         this.debut=d;
-        this.fin=f;
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        long diff = f.getTime() - d.getTime();
-        float res = (diff / (1000*60*60*24));
-        this.nbPages = (int)res;
-        this.pages = new Page[this.nbPages];
+        this.nbPages = nbJ;
+        this.ajouterPage(this.nbPages);
     }
 
-    public void ajouterPage(Page page) {
-        if (nbPages < pages.length) {
-            pages[nbPages] = page;
-            nbPages++;
+    public void ajouterPage(int nbPages) {
+        pages = new Page[nbPages];
+        for (int i = 0; i < nbPages; i++) {
+            pages[i] = new Page(this.debut.plusDays(i), "Titre", "Texte");
         }
     }
 
