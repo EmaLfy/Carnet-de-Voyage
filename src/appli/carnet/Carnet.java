@@ -16,7 +16,7 @@ public class Carnet {
     public void ajouterPage(int nbPages) {
         pages = new Page[nbPages];
         for (int i = 0; i < nbPages; i++) {
-            pages[i] = new Page(this.debut.plusDays(i), "Titre", "Texte");
+            pages[i] = new Page(this.debut.plusDays(i));
         }
     }
 

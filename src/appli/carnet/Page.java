@@ -8,9 +8,9 @@ public class Page {
     private String titre;
     private String texte;
 
-    public Page(LocalDate date, String titre, String texte) {
-        this.titre = titre;
-        this.texte = texte;
+    public Page(LocalDate date) {
+        this.titre = "Titre";
+        this.texte = "Texte";
         this.date = date;
     }
 
