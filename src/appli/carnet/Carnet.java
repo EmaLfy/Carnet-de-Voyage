@@ -30,4 +30,16 @@ public class Carnet {
     public int getNbPages() {
         return nbPages;
     }
+
+    public LocalDate getDateDeb() {
+        return debut;
+    }
+
+    public LocalDate getDateFin() {
+        return debut.plusDays(nbPages);
+    }
+
+    public LocalDate getDatePage(int index) {
+        return debut.plusDays(index);
+    }
 }
