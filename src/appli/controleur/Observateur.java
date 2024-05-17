@@ -1,5 +1,5 @@
 package appli.controleur;
 
-public class Observateur {
-    public void reagir(){}
+public interface Observateur {
+    void reagir();
 }

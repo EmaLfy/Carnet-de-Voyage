@@ -68,6 +68,8 @@ class controleur.ControleurMenu{
     - Button newPage
     - Button visu
     - Button Modif
+    + sortir()
+    + new
 }
 
 class controleur.ControleurModifPage{
