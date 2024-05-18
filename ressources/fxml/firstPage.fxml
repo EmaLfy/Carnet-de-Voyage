@@ -32,9 +32,9 @@
     <center>
         <BorderPane prefHeight="500.0" prefWidth="950.0" style="-fx-background-color: #db9159;" BorderPane.alignment="CENTER">
             <center>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="272.0" prefWidth="196.0" style="-fx-background-color: #ba444e;" text="Carnet &#10;de &#10;Voyage&#10;" textAlignment="CENTER" textFill="#fbd763" textOverrun="CENTER_ELLIPSIS" underline="true" wrapText="true" BorderPane.alignment="CENTER">
+                <Label alignment="CENTER" contentDisplay="CENTER" onTouchReleased="#toMenu" prefHeight="453.0" prefWidth="320.0" style="-fx-background-color: #ba444e;" text="Carnet &#10;de &#10;Voyage&#10;" textAlignment="CENTER" textFill="#fbd763" textOverrun="CENTER_ELLIPSIS" underline="true" wrapText="true" BorderPane.alignment="CENTER">
                     <font>
-                        <Font name="Yrsa SemiBold Italic" size="31.0" />
+                        <Font name="Yrsa SemiBold Italic" size="45.0" />
                     </font>
                     <effect>
                         <DropShadow />
