@@ -8,16 +8,25 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    private static Stage primaryStage;
+    private static TailleComposant tailleComposant = TailleComposant.getInstance();
+
+    @Override
     public void start(Stage primaryStage) throws Exception {
-        // Charge le fichier FXML
-        TailleComposant tailleComposant = TailleComposant.getInstance();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/firstPage.fxml"));
-
-        // Configure la scène
+        Main.primaryStage = primaryStage;
         primaryStage.setTitle("-- Carnet de Voyage --");
-        primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
+        showFirstPage();
+    }
 
-        // Affiche la fenêtre
+    public static void showFirstPage() throws Exception {
+        Parent root = FXMLLoader.load(Main.class.getResource("/fxml/firstPage.fxml"));
+        primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
+        primaryStage.show();
+    }
+
+    public static void showMenuPage() throws Exception {
+        Parent root = FXMLLoader.load(Main.class.getResource("/fxml/menuPage.fxml"));
+        primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
         primaryStage.show();
     }
 

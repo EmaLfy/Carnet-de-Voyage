@@ -1,5 +1,6 @@
 package appli.controleur;
 
+import appli.Main;
 import javafx.fxml.FXML;
 
 public class ControleurFirstPage {
@@ -7,7 +8,13 @@ public class ControleurFirstPage {
     public void sortir() {
         System.exit(0);
     }
-    public void toMenu(){
 
+    @FXML
+    public void toMenu() {
+        try {
+            Main.showMenuPage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
