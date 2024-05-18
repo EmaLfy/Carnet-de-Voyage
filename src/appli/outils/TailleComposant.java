@@ -16,7 +16,4 @@ public class TailleComposant {
     public int windWidth(){
         return 900;
     }
-    public int VBoxWidth(){
-        return 200;
-    }
 }

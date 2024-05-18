@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.layout.BorderPane?>
@@ -10,10 +12,13 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ba7544;" BorderPane.alignment="CENTER">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#sortir" style="-fx-background-color: #ba7544;" text="Exit">
+          <Button mnemonicParsing="false" onAction="#sortir" style="-fx-background-color: #ba7544;" text="Quit">
                <font>
-                  <Font size="17.0" />
-               </font></Button>
+                  <Font name="Abyssinica SIL" size="17.0" />
+               </font>
+               <padding>
+                  <Insets right="20.0" />
+               </padding></Button>
         </buttons>
       </ButtonBar>
    </bottom>
@@ -21,7 +26,30 @@
       <BorderPane prefHeight="360.0" prefWidth="525.0" style="-fx-background-color: #ba444e; -fx-border-width: 50;" BorderPane.alignment="CENTER">
          <bottom>
             <Pane prefHeight="24.0" prefWidth="528.0" style="-fx-background-color: #db9159;" BorderPane.alignment="CENTER" />
-         </bottom></BorderPane>
+         </bottom>
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f8efcc;" BorderPane.alignment="CENTER">
+               <bottom>
+                  <Pane prefHeight="7.0" prefWidth="511.0" style="-fx-background-color: #ba444e;" BorderPane.alignment="CENTER" />
+               </bottom>
+               <center>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <left>
+                        <Accordion BorderPane.alignment="CENTER" />
+                     </left>
+                  </BorderPane>
+               </center>
+            </BorderPane>
+         </center>
+         <top>
+            <Pane prefHeight="9.0" prefWidth="528.0" BorderPane.alignment="CENTER" />
+         </top>
+         <left>
+            <Pane prefHeight="295.0" prefWidth="7.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Pane prefHeight="295.0" prefWidth="10.0" BorderPane.alignment="CENTER" />
+         </right></BorderPane>
    </center>
    <top>
       <Pane prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER" />

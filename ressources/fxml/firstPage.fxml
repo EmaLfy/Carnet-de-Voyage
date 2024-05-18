@@ -14,11 +14,11 @@
             <buttons>
                 <Button alignment="CENTER" mnemonicParsing="false" onAction="#toMenu" style="-fx-background-color: #ba7544;" text="Menu" textFill="#5a2e0f">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Abyssinica SIL" size="17.0" />
                </font></Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" mnemonicParsing="false" onAction="#sortir" prefHeight="26.0" prefWidth="508.0" style="-fx-background-color: #ba7544;" text="Exit" textFill="#5a2e0f">
+                <Button alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" mnemonicParsing="false" onAction="#sortir" prefHeight="26.0" prefWidth="508.0" style="-fx-background-color: #ba7544;" text="Quit" textFill="#5a2e0f">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Abyssinica SIL" size="17.0" />
                </font></Button>
             </buttons>
             <opaqueInsets>
