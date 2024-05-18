@@ -8,35 +8,35 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <bottom>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ba7544;" BorderPane.alignment="CENTER">
-        <buttons>
-          <Button alignment="CENTER" mnemonicParsing="false" onAction="#toMenu" style="-fx-background-color: #ba7544;" text="Menu" textFill="#5a2e0f" />
-            <Button alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" mnemonicParsing="false" onAction="#sortir" prefHeight="26.0" prefWidth="508.0" style="-fx-background-color: #ba7544;" text="Exit" textFill="#5a2e0f" />
-        </buttons>
-         <opaqueInsets>
-            <Insets top="40.0" />
-         </opaqueInsets>
-         <effect>
-            <DropShadow />
-         </effect>
-      </ButtonBar>
-   </bottom>
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #db9159;" BorderPane.alignment="CENTER">
-         <center>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="272.0" prefWidth="196.0" style="-fx-background-color: #ba444e;" text="Carnet &#10;de &#10;Voyage&#10;" textAlignment="CENTER" textFill="#fbd763" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Yrsa SemiBold Italic" size="31.0" />
-               </font>
-               <effect>
-                  <DropShadow />
-               </effect></Label>
-         </center>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </BorderPane>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.controleur.ControleurFirstPage">
+    <bottom>
+        <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ba7544;" BorderPane.alignment="CENTER">
+            <buttons>
+                <Button alignment="CENTER" mnemonicParsing="false" onAction="#toMenu" style="-fx-background-color: #ba7544;" text="Menu" textFill="#5a2e0f" />
+                <Button alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" mnemonicParsing="false" onAction="#sortir" prefHeight="26.0" prefWidth="508.0" style="-fx-background-color: #ba7544;" text="Exit" textFill="#5a2e0f" />
+            </buttons>
+            <opaqueInsets>
+                <Insets top="40.0" />
+            </opaqueInsets>
+            <effect>
+                <DropShadow />
+            </effect>
+        </ButtonBar>
+    </bottom>
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #db9159;" BorderPane.alignment="CENTER">
+            <center>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="272.0" prefWidth="196.0" style="-fx-background-color: #ba444e;" text="Carnet &#10;de &#10;Voyage&#10;" textAlignment="CENTER" textFill="#fbd763" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font name="Yrsa SemiBold Italic" size="31.0" />
+                    </font>
+                    <effect>
+                        <DropShadow />
+                    </effect></Label>
+            </center>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </BorderPane>
+    </center>
 </BorderPane>
