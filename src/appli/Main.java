@@ -14,7 +14,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/firstPage.fxml"));
 
         // Configure la scène
-        primaryStage.setTitle("My JavaFX Application");
+        primaryStage.setTitle("-- Carnet de Voyage --");
         primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
 
         // Affiche la fenêtre
