@@ -4,6 +4,7 @@ import appli.Main;
 import javafx.fxml.FXML;
 
 public class ControleurFirstPage {
+
     @FXML
     public void sortir() {
         System.exit(0);

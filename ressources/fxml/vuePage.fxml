@@ -4,12 +4,12 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #db9159;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.controleur.ControleurMenu">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #db9159;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appli.controleur.ControleurPage">
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ba7544;" BorderPane.alignment="CENTER">
         <buttons>
@@ -38,42 +38,21 @@
                      <left>
                         <Accordion BorderPane.alignment="CENTER" />
                      </left>
-                     <top>
-                        <Label alignment="BASELINE_LEFT" graphicTextGap="7.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="140.0" prefWidth="674.0" text="Sommaire" underline="true" BorderPane.alignment="CENTER">
-                           <font>
-                              <Font name="Yrsa SemiBold Italic" size="61.0" />
-                           </font>
-                        </Label>
-                     </top>
                      <right>
-                        <Pane prefHeight="328.0" prefWidth="443.0" BorderPane.alignment="CENTER" />
+                        <Pane prefHeight="488.0" prefWidth="414.0" BorderPane.alignment="CENTER" />
                      </right>
                      <center>
-                        <BorderPane prefHeight="328.0" prefWidth="398.0" style="-fx-padding: 40;" BorderPane.alignment="CENTER">
+                        <BorderPane prefHeight="488.0" prefWidth="443.0" style="-fx-padding: 40;" BorderPane.alignment="CENTER">
                            <top>
-                              <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#toNewPage" prefHeight="32.0" prefWidth="342.0" style="-fx-background-color: #f8efcc;" text="New Page ............................... 1" BorderPane.alignment="BOTTOM_CENTER">
+                              <TextField alignment="CENTER" prefHeight="48.0" prefWidth="317.0" promptText="Titre" BorderPane.alignment="CENTER">
                                  <font>
-                                    <Font name="Yrsa SemiBold" size="22.0" />
+                                    <Font name="Yrsa SemiBold" size="24.0" />
                                  </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </Button>
+                              </TextField>
                            </top>
                            <center>
-                              <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="334.0" style="-fx-background-color: #f8efcc;" text="Feuilleter ............................... 2" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font name="Yrsa SemiBold" size="22.0" />
-                                 </font>
-                              </Button>
+                              <TextField alignment="TOP_LEFT" prefHeight="324.0" prefWidth="317.0" promptText="Compte rendu du jour ...." BorderPane.alignment="CENTER" />
                            </center>
-                           <bottom>
-                              <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="332.0" style="-fx-background-color: #f8efcc;" text="Modifier ................................. 3" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font name="Yrsa SemiBold" size="22.0" />
-                                 </font>
-                              </Button>
-                           </bottom>
                         </BorderPane>
                      </center>
                   </BorderPane>

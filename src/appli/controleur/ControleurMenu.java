@@ -14,6 +14,14 @@ public class ControleurMenu {
         }
     }
 
+    public void toNewPage(){
+        try{
+            Main.showNewPage();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void sortir() {
         System.exit(0);
