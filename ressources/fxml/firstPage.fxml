@@ -12,11 +12,11 @@
     <bottom>
         <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ba7544;" BorderPane.alignment="CENTER">
             <buttons>
-                <Button alignment="CENTER" mnemonicParsing="false" onAction="#toMenu" style="-fx-background-color: #ba7544;" text="Menu" textFill="#5a2e0f">
+                <Button alignment="CENTER" mnemonicParsing="false" onAction="#toMenu" style="-fx-background-color: #ba7544;" text="Menu" textFill="#ffcaa5">
                <font>
                   <Font name="Abyssinica SIL" size="17.0" />
                </font></Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" mnemonicParsing="false" onAction="#sortir" prefHeight="26.0" prefWidth="508.0" style="-fx-background-color: #ba7544;" text="Quit" textFill="#5a2e0f">
+                <Button alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" mnemonicParsing="false" onAction="#sortir" prefHeight="26.0" prefWidth="508.0" style="-fx-background-color: #ba7544;" text="Quit" textFill="#ffcaa5">
                <font>
                   <Font name="Abyssinica SIL" size="17.0" />
                </font></Button>
@@ -32,12 +32,12 @@
     <center>
         <BorderPane prefHeight="500.0" prefWidth="950.0" style="-fx-background-color: #db9159;" BorderPane.alignment="CENTER">
             <center>
-                <Label alignment="CENTER" contentDisplay="CENTER" onTouchReleased="#toMenu" prefHeight="453.0" prefWidth="320.0" style="-fx-background-color: #ba444e;" text="Carnet &#10;de &#10;Voyage&#10;" textAlignment="CENTER" textFill="#fbd763" textOverrun="CENTER_ELLIPSIS" underline="true" wrapText="true" BorderPane.alignment="CENTER">
+                <Label alignment="CENTER" contentDisplay="CENTER" onTouchReleased="#toMenu" prefHeight="453.0" prefWidth="320.0" style="-fx-background-color: #ba444e;" text="Carnet &#10;de &#10;Voyage&#10;" textAlignment="CENTER" textFill="#ffcaa5" textOverrun="CENTER_ELLIPSIS" underline="true" wrapText="true" BorderPane.alignment="CENTER">
                     <font>
                         <Font name="Yrsa SemiBold Italic" size="45.0" />
                     </font>
                     <effect>
-                        <DropShadow />
+                        <DropShadow color="#572626" />
                     </effect></Label>
             </center>
             <opaqueInsets>

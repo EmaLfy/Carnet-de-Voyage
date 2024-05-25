@@ -7,13 +7,19 @@ public class Carnet {
     private Page[] pages;
     private int nbPages;
 
+    public Carnet(){
+        this.debut = LocalDate.now();
+        this.nbPages = 6;
+        this.ajouterPages(this.nbPages);
+    }
+
     public Carnet(LocalDate d, int nbJ) {
         this.debut=d;
         this.nbPages = nbJ;
-        this.ajouterPage(this.nbPages);
+        this.ajouterPages(this.nbPages);
     }
 
-    public void ajouterPage(int nbPages) {
+    public void ajouterPages(int nbPages) {
         pages = new Page[nbPages];
         for (int i = 0; i < nbPages; i++) {
             pages[i] = new Page(this.debut.plusDays(i));

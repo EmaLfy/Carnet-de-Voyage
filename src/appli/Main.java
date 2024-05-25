@@ -1,5 +1,7 @@
 package appli;
 
+import appli.carnet.Carnet;
+import appli.carnet.Page;
 import appli.outils.TailleComposant;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +15,11 @@ public class Main extends Application {
 
     private static Stage primaryStage;
     private static TailleComposant tailleComposant = TailleComposant.getInstance();
+    private Carnet carnet;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.carnet = new Carnet();
         Main.primaryStage = primaryStage;
         primaryStage.setTitle("My JavaFX Application");
         showFirstPage();
@@ -54,5 +58,13 @@ public class Main extends Application {
     }
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public Carnet getCarnet(){
+        return carnet;
+    }
+
+    public Page getPage(int index){
+        return carnet.getPage(index);
     }
 }
