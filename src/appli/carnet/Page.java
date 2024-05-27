@@ -9,9 +9,13 @@ public class Page {
     private String texte;
 
     public Page(LocalDate date) {
+        System.out.println("\nCréation d'une page");
         this.titre = "Titre";
+        System.out.println("Titre : " + this.titre);
         this.texte = "Texte";
+        System.out.println("Texte : " + this.texte);
         this.date = date;
+        System.out.println("Date : " + this.date);
     }
 
     public String getTitre() {

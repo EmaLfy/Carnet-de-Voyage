@@ -2,6 +2,7 @@ package appli;
 
 import appli.carnet.Carnet;
 import appli.carnet.Page;
+import appli.controleur.ControleurMenu;
 import appli.outils.TailleComposant;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,13 +16,13 @@ public class Main extends Application {
 
     private static Stage primaryStage;
     private static TailleComposant tailleComposant = TailleComposant.getInstance();
-    private Carnet carnet;
+    private static Carnet carnet;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.carnet = new Carnet();
+        carnet = new Carnet();
         Main.primaryStage = primaryStage;
-        primaryStage.setTitle("My JavaFX Application");
+        primaryStage.setTitle("-- Carnet de Voyage --");
         showFirstPage();
 
         // Add event handler for Enter key
@@ -40,6 +41,10 @@ public class Main extends Application {
         return primaryStage;
     }
 
+    public static Carnet getCarnet() {
+        return carnet;
+    }
+
     public static void showFirstPage() throws Exception {
         Parent root = FXMLLoader.load(Main.class.getResource("/fxml/firstPage.fxml"));
         primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
@@ -47,24 +52,28 @@ public class Main extends Application {
     }
 
     public static void showMenuPage() throws Exception {
-        Parent root = FXMLLoader.load(Main.class.getResource("/fxml/menuPage.fxml"));
+        ControleurMenu controleurMenu = new ControleurMenu();
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/menuPage.fxml"));
+        Parent root = loader.load();
         primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
         primaryStage.show();
     }
+
     public static void showNewPage() throws Exception {
         Parent root = FXMLLoader.load(Main.class.getResource("/fxml/vuePage.fxml"));
         primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
         primaryStage.show();
     }
+
     public static void main(String[] args) {
         launch(args);
     }
 
-    public Carnet getCarnet(){
+    public Carnet getCarnetInstance() {
         return carnet;
     }
 
-    public Page getPage(int index){
+    public Page getPage(int index) {
         return carnet.getPage(index);
     }
 }

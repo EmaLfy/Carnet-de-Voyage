@@ -1,5 +1,6 @@
 package appli.controleur;
 
+import appli.Main;
 import appli.carnet.Carnet;
 import appli.carnet.Page;
 import javafx.fxml.FXML;
@@ -34,6 +35,14 @@ public class ControleurPage {
     @FXML
     public void sortir() {
         System.exit(0);
+    }
+    @FXML
+    public void toMenu() {
+        try {
+            Main.showMenuPage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

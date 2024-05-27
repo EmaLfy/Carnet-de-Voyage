@@ -1,6 +1,7 @@
 package appli.carnet;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Carnet {
     private LocalDate debut;
@@ -8,9 +9,9 @@ public class Carnet {
     private int nbPages;
 
     public Carnet(){
-        this.debut = LocalDate.now();
-        this.nbPages = 6;
-        this.ajouterPages(this.nbPages);
+//        this.nbPages=1;
+//        this.debut = LocalDate.now();
+//        this.ajouterPages(this.nbPages);
     }
 
     public Carnet(LocalDate d, int nbJ) {
@@ -47,5 +48,22 @@ public class Carnet {
 
     public LocalDate getDatePage(int index) {
         return debut.plusDays(index);
+    }
+
+    public void setData(LocalDate d, int nbj) {
+        System.out.println("\nCréation d'un carnet");
+        this.debut = d;
+        System.out.println("Date de debut : " + this.debut);
+        this.nbPages = nbj;
+        System.out.println("Nombre de pages : " + this.nbPages);
+        this.ajouterPages(this.nbPages);
+    }
+
+    @Override
+    public String toString() {
+        return "Carnet{" +
+                "debut=" + debut +
+                ", nbPages=" + nbPages +
+                '}';
     }
 }

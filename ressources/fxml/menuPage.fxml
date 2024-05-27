@@ -4,7 +4,11 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -46,7 +50,30 @@
                         </Label>
                      </top>
                      <right>
-                        <Pane prefHeight="328.0" prefWidth="443.0" BorderPane.alignment="CENTER" />
+                        <Pane prefHeight="328.0" prefWidth="443.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <DatePicker id="Date" layoutX="135.0" layoutY="85.0" prefHeight="26.0" prefWidth="173.0" promptText="Date Début" style="-fx-background-color: #f8efcc; -fx-control-inner-background: #f8efcc;">
+                                 <effect>
+                                    <InnerShadow color="#dacd9e" />
+                                 </effect>
+                              </DatePicker>
+                              <TextField id="jours" layoutX="170.0" layoutY="161.0" prefHeight="26.0" prefWidth="104.0" promptText="Nombre de jours" style="-fx-background-color: #f8efcc;">
+                                 <font>
+                                    <Font name="Yrsa SemiBold" size="13.0" />
+                                 </font>
+                                 <effect>
+                                    <InnerShadow blurType="TWO_PASS_BOX" color="#dacc99" />
+                                 </effect>
+                              </TextField>
+                              <Button layoutX="201.0" layoutY="233.0" mnemonicParsing="false" onAction="#updateCarnet" style="-fx-background-color: #db91#f8efcc59;" text="Save" textFill="#b5734b">
+                                 <font>
+                                    <Font name="Yrsa SemiBold" size="13.0" />
+                                 </font>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                              </Button>
+                           </children></Pane>
                      </right>
                      <center>
                         <BorderPane prefHeight="328.0" prefWidth="398.0" style="-fx-padding: 40;" BorderPane.alignment="CENTER">

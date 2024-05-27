@@ -16,13 +16,21 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ba7544;" BorderPane.alignment="CENTER">
          <buttons>
-            <Button mnemonicParsing="false" onAction="#sortir" style="-fx-background-color: #ba7544;" text="Quit" textFill="#ffcaa5">
+            <Button mnemonicParsing="false" onAction="#toMenu" style="-fx-background-color: #ba7544;" text="Menu" textFill="#ffcaa5">
                <font>
                   <Font name="Abyssinica SIL" size="17.0" />
                </font>
                <padding>
                   <Insets right="20.0" />
                </padding></Button>
+            <Button layoutX="825.0" layoutY="18.0" mnemonicParsing="false" onAction="#sortir" style="-fx-background-color: #ba7544;" text="Quit" textFill="#ffcaa5">
+               <font>
+                  <Font name="Abyssinica SIL" size="17.0" />
+               </font>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Button>
          </buttons>
       </ButtonBar>
    </bottom>
@@ -47,7 +55,7 @@
                      <center>
                         <BorderPane prefHeight="488.0" prefWidth="443.0" style="-fx-padding: 20;" BorderPane.alignment="CENTER">
                            <top>
-                              <TextField fx:id="titreTextField" alignment="CENTER" prefHeight="48.0" prefWidth="317.0" promptText="Titre" style="-fx-background-color: #f8efcc;" BorderPane.alignment="CENTER">
+                              <TextField fx:id="titre" alignment="CENTER" prefHeight="48.0" prefWidth="343.0" promptText="Titre" style="-fx-background-color: #f8efcc;" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Yrsa SemiBold" size="24.0" />
                                  </font>
@@ -67,10 +75,13 @@
                               </Button>
                            </bottom>
                            <center>
-                              <TextArea prefHeight="320.0" prefWidth="357.0" promptText="Compte rendu du jour ..." style="-fx-background-color: #f8efcc; -fx-padding: 15;" BorderPane.alignment="CENTER">
+                              <TextArea fx:id="texte" prefHeight="320.0" prefWidth="357.0" promptText="Compte rendu du jour ..." style="-fx-control-inner-background: #f8efcc; -fx-background-color: transparent; -fx-padding: 8;" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Yrsa SemiBold" size="16.0" />
                                  </font>
+                                 <effect>
+                                    <InnerShadow blurType="TWO_PASS_BOX" color="#e4d090" />
+                                 </effect>
                               </TextArea>
                            </center>
                         </BorderPane>
