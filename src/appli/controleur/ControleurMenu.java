@@ -14,10 +14,10 @@ public class ControleurMenu {
     private Carnet carnet;
 
     @FXML
-    Label date;
+    private Label date;
 
     @FXML
-    Label jours;
+    private Label jours;
 
     public ControleurMenu(Carnet carnetl){
         this.carnet=carnetl;
@@ -34,11 +34,13 @@ public class ControleurMenu {
     public Carnet getCarnet() {
         return carnet;
     }
+
     @FXML
     public void sortir() {
         System.exit(0);
     }
 
+    @FXML
     public void toNewPage(){
         try{
             Main.showNewPage();

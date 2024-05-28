@@ -28,6 +28,7 @@ public class ControleurMenuPage {
         int nbJours = Integer.parseInt(jours.getText());
         //carnet.setNbPages(nbJours);
         this.carnet.setData(d, nbJours);
+
         toMenu();
 //        if (carnet != null) {
 //            LocalDate d=date.getValue();
@@ -47,13 +48,13 @@ public class ControleurMenuPage {
         }
     }
 
-    public void toNewPage(){
-        try{
-            Main.showNewPage();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+//    public void toNewPage(){
+//        try{
+//            Main.showNewPage();
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 
     @FXML
     public void sortir() {

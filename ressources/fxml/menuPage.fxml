@@ -78,7 +78,7 @@
                      <center>
                         <BorderPane prefHeight="328.0" prefWidth="398.0" style="-fx-padding: 40;" BorderPane.alignment="CENTER">
                            <top>
-                              <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#toNewPage" prefHeight="32.0" prefWidth="342.0" style="-fx-background-color: #f8efcc;" text="New Page ............................... 1" textFill="#863d0d" BorderPane.alignment="BOTTOM_CENTER">
+                              <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="342.0" style="-fx-background-color: #f8efcc;" text="New Page ............................... 1" textFill="#863d0d" BorderPane.alignment="BOTTOM_CENTER">
                                  <font>
                                     <Font name="Yrsa SemiBold" size="22.0" />
                                  </font>

@@ -4,6 +4,7 @@ import appli.Main;
 import appli.carnet.Carnet;
 import appli.carnet.Page;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class ControleurPage {
@@ -14,10 +15,10 @@ public class ControleurPage {
     private int currentPageIndex;
 
     @FXML
-    private TextField titreTextField;
+    private TextField titre;
 
     @FXML
-    private TextField compteRenduTextField;
+    private TextArea texte;
 
     public ControleurPage(Carnet carnetl){
         this.carnet=carnetl;
@@ -25,7 +26,8 @@ public class ControleurPage {
     }
 
     public void initialize(){
-
+        titre.setText(page.getTitre());
+        texte.setText(page.getTexte());
     }
 
     // Méthode pour initialiser le contrôleur avec le carnet et la page actuelle
@@ -39,8 +41,8 @@ public class ControleurPage {
     private void loadPageData() {
         Page currentPage = carnet.getPage(currentPageIndex);
         if (currentPage != null) {
-            titreTextField.setText(currentPage.getTitre());
-            compteRenduTextField.setText(currentPage.getTexte());
+            titre.setText(currentPage.getTitre());
+            texte.setText(currentPage.getTexte());
         }
     }
 
@@ -60,13 +62,13 @@ public class ControleurPage {
     @FXML
     public void save() {
         // Récupérer les valeurs des champs de texte
-        String titre = titreTextField.getText();
-        String compteRendu = compteRenduTextField.getText();
+        String titreP = titre.getText();
+        String compteRendu = texte.getText();
 
         // Mettre à jour la page actuelle dans le carnet
         Page currentPage = carnet.getPage(currentPageIndex);
         if (currentPage != null) {
-            currentPage.setTitre(titre);
+            currentPage.setTitre(titreP);
             currentPage.setTexte(compteRendu);
 
             // Afficher les valeurs pour vérifier

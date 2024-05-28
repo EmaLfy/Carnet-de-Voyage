@@ -75,7 +75,6 @@ public class Main extends Application {
 
     public static void showNewPage() throws Exception {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/vuePage.fxml"));
-        //Parent root = FXMLLoader.load(Main.class.getResource("/fxml/vuePage.fxml"));
         loader.setControllerFactory(iC->new ControleurPage(carnet));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
