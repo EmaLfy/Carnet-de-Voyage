@@ -1,49 +1,42 @@
 package appli.controleur;
 
+import appli.Main;
 import appli.carnet.Carnet;
 import javafx.fxml.FXML;
-import appli.Main;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import static java.lang.Integer.parseInt;
 
 public class ControleurMenu {
     private Carnet carnet;
 
     @FXML
-    private DatePicker date;
+    Label date;
 
     @FXML
-    private TextField jours;
+    Label jours;
 
-    public void ControleurMenu(Carnet carnetl) {
-        this.carnet = carnetl;
+    public ControleurMenu(Carnet carnetl){
+        this.carnet=carnetl;
     }
 
-    @FXML
-    public void updateCarnet() {
-        LocalDate d=date.getValue();
-        //carnet.setDebut(date.getValue());
-        int nbJours = Integer.parseInt(jours.getText());
-        //carnet.setNbPages(nbJours);
-        carnet.setData(d, nbJours);
-//        if (carnet != null) {
-//            LocalDate d=date.getValue();
-//            //carnet.setDebut(date.getValue());
-//            int nbJours = Integer.parseInt(jours.getText());
-//            //carnet.setNbPages(nbJours);
-//            carnet.setData(d, nbJours);
-//        }
+    public void initialize(){
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        date.setText(carnet.getDateDeb().format(pattern));
+        String nbJ= String.valueOf(carnet.getNbPages());
+        jours.setText(nbJ);
+
     }
 
+    public Carnet getCarnet() {
+        return carnet;
+    }
     @FXML
-    public void retourner() {
-        try {
-            Main.showFirstPage();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void sortir() {
+        System.exit(0);
     }
 
     public void toNewPage(){
@@ -53,15 +46,4 @@ public class ControleurMenu {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    public void sortir() {
-        System.exit(0);
-    }
-
-    // Méthode appelée lors du chargement de la page
-    public void initialize() {
-
-    }
 }
-

@@ -20,6 +20,15 @@ public class Carnet {
         this.ajouterPages(this.nbPages);
     }
 
+    public void setData(LocalDate d, int nbj) {
+        System.out.println("\nCréation d'un carnet");
+        this.debut = d;
+        System.out.println("Date de debut : " + this.debut);
+        this.nbPages = nbj;
+        System.out.println("Nombre de pages : " + this.nbPages);
+        this.ajouterPages(this.nbPages);
+    }
+
     public void ajouterPages(int nbPages) {
         pages = new Page[nbPages];
         for (int i = 0; i < nbPages; i++) {
@@ -32,6 +41,15 @@ public class Carnet {
             return pages[index];
         }
         return null;
+    }
+
+    public Page getNewPage(){
+        for(Page p:pages){
+            if(p.estVierge()){
+                return p;
+            }
+        }
+        return pages[0]; // Si toutes les pages sont remplies, on retourne à la page numéro 1
     }
 
     public int getNbPages() {
@@ -50,14 +68,7 @@ public class Carnet {
         return debut.plusDays(index);
     }
 
-    public void setData(LocalDate d, int nbj) {
-        System.out.println("\nCréation d'un carnet");
-        this.debut = d;
-        System.out.println("Date de debut : " + this.debut);
-        this.nbPages = nbj;
-        System.out.println("Nombre de pages : " + this.nbPages);
-        this.ajouterPages(this.nbPages);
-    }
+
 
     @Override
     public String toString() {

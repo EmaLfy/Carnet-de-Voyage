@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 
 public class ControleurPage {
     private Carnet carnet;
+
+    private Page page;
+
     private int currentPageIndex;
 
     @FXML
@@ -15,6 +18,15 @@ public class ControleurPage {
 
     @FXML
     private TextField compteRenduTextField;
+
+    public ControleurPage(Carnet carnetl){
+        this.carnet=carnetl;
+        this.page=carnet.getNewPage();
+    }
+
+    public void initialize(){
+
+    }
 
     // Méthode pour initialiser le contrôleur avec le carnet et la page actuelle
     public void initData(Carnet carnet, int pageIndex) {

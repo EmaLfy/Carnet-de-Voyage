@@ -3,6 +3,8 @@ package appli;
 import appli.carnet.Carnet;
 import appli.carnet.Page;
 import appli.controleur.ControleurMenu;
+import appli.controleur.ControleurMenuPage;
+import appli.controleur.ControleurPage;
 import appli.outils.TailleComposant;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        carnet = new Carnet();
         Main.primaryStage = primaryStage;
         primaryStage.setTitle("-- Carnet de Voyage --");
         showFirstPage();
@@ -52,15 +53,31 @@ public class Main extends Application {
     }
 
     public static void showMenuPage() throws Exception {
-        ControleurMenu controleurMenu = new ControleurMenu();
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/menuPage.fxml"));
+        if(carnet!=null){
+            showMenu();
+        }else {
+            carnet = new Carnet();
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/menuPage.fxml"));
+            loader.setControllerFactory(iC -> new ControleurMenuPage(carnet));
+            Parent root = loader.load();
+            primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
+            primaryStage.show();
+        }
+    }
+
+    public static void showMenu() throws Exception{
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/menu.fxml"));
+        loader.setControllerFactory(iC->new ControleurMenu(carnet));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
         primaryStage.show();
     }
 
     public static void showNewPage() throws Exception {
-        Parent root = FXMLLoader.load(Main.class.getResource("/fxml/vuePage.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/vuePage.fxml"));
+        //Parent root = FXMLLoader.load(Main.class.getResource("/fxml/vuePage.fxml"));
+        loader.setControllerFactory(iC->new ControleurPage(carnet));
+        Parent root = loader.load();
         primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
         primaryStage.show();
     }

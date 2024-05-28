@@ -2,6 +2,7 @@ package appli.carnet;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 public class Page {
     private LocalDate date;
@@ -40,5 +41,12 @@ public class Page {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public boolean estVierge(){
+        if(!Objects.equals(titre, "Titre") && !Objects.equals(texte, "Texte")){
+            return false;
+        }
+        return true;
     }
 }
