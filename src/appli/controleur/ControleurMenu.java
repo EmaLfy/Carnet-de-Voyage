@@ -48,4 +48,13 @@ public class ControleurMenu {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void toVisuPage(){
+        try{
+            Main.showVisuPage();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -78,7 +78,7 @@
                               </Button>
                            </top>
                            <center>
-                              <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="334.0" style="-fx-background-color: #f8efcc;" text="Feuilleter ............................... 2" textFill="#863d0d" BorderPane.alignment="CENTER">
+                              <Button mnemonicParsing="false" onAction="#toVisuPage" prefHeight="41.0" prefWidth="334.0" style="-fx-background-color: #f8efcc;" text="Feuilleter ............................... 2" textFill="#863d0d" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Yrsa SemiBold" size="22.0" />
                                  </font>

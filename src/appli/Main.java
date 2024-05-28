@@ -5,6 +5,7 @@ import appli.carnet.Page;
 import appli.controleur.ControleurMenu;
 import appli.controleur.ControleurMenuPage;
 import appli.controleur.ControleurPage;
+import appli.controleur.ControleurVisuPage;
 import appli.outils.TailleComposant;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -76,6 +77,14 @@ public class Main extends Application {
     public static void showNewPage() throws Exception {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/vuePage.fxml"));
         loader.setControllerFactory(iC->new ControleurPage(carnet));
+        Parent root = loader.load();
+        primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
+        primaryStage.show();
+    }
+
+    public static void showVisuPage()throws Exception{
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/visuPage.fxml"));
+        loader.setControllerFactory(iC->new ControleurVisuPage(carnet));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
         primaryStage.show();

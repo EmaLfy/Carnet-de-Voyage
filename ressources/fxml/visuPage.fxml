@@ -14,7 +14,7 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ba7544;" BorderPane.alignment="CENTER">
          <buttons>
-            <Button mnemonicParsing="false" style="-fx-background-color: #ba7544;" text="Vignettes" textFill="#ffcaa5">
+            <Button mnemonicParsing="false" onAction="#toMenu" style="-fx-background-color: #ba7544;" text="Menu" textFill="#ffcaa5">
                <font>
                   <Font name="Abyssinica SIL" size="17.0" />
                </font>
