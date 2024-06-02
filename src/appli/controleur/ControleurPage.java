@@ -6,6 +6,10 @@ import appli.carnet.Page;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ControleurPage {
     private Carnet carnet;
@@ -13,6 +17,8 @@ public class ControleurPage {
     private Page page;
 
     private int currentPageIndex;
+
+    private int index;
 
     @FXML
     private TextField titre;
@@ -30,26 +36,18 @@ public class ControleurPage {
         texte.setText(page.getTexte());
     }
 
-    // Méthode pour initialiser le contrôleur avec le carnet et la page actuelle
-    public void initData(Carnet carnet, int pageIndex) {
-        this.carnet = carnet;
-        this.currentPageIndex = pageIndex;
-        loadPageData();
+    public void updateData(){
+        titre.setText(carnet.getPage(this.index).getTitre());
+        texte.setText(carnet.getPage(this.index).getTexte());
     }
 
-    // Méthode pour charger les données de la page actuelle dans les champs de texte
-    private void loadPageData() {
-        Page currentPage = carnet.getPage(currentPageIndex);
-        if (currentPage != null) {
-            titre.setText(currentPage.getTitre());
-            texte.setText(currentPage.getTexte());
-        }
-    }
 
     @FXML
-    public void sortir() {
+    public void sortir() throws IOException {
+        saveCarnet();
         System.exit(0);
     }
+
     @FXML
     public void toMenu() {
         try {
@@ -59,6 +57,34 @@ public class ControleurPage {
         }
     }
 
+    public void toFirstPage(){
+        try{
+            Main.showFirstPage();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void suivant(){
+        if(index<carnet.getNbPages()-1){
+            index++;
+        }else{
+            index=0;
+        }
+        updateData();
+    }
+
+    @FXML
+    public void precedent(){
+        if(index==0){
+            index= carnet.getNbPages()-1;
+        }else{
+            index--;
+        }
+        updateData();
+    }
+
     @FXML
     public void save() {
         // Récupérer les valeurs des champs de texte
@@ -66,7 +92,7 @@ public class ControleurPage {
         String compteRendu = texte.getText();
 
         // Mettre à jour la page actuelle dans le carnet
-        Page currentPage = carnet.getPage(currentPageIndex);
+        Page currentPage = carnet.getPage(index);
         if (currentPage != null) {
             currentPage.setTitre(titreP);
             currentPage.setTexte(compteRendu);
@@ -76,6 +102,29 @@ public class ControleurPage {
             System.out.println("Date: " + currentPage.getDate());
             System.out.println("Titre: " + currentPage.getTitre());
             System.out.println("Compte Rendu: " + currentPage.getTexte());
+        }
+    }
+
+    public void saveCarnet() throws IOException {
+        if (carnet != null) {
+            if (carnet.getPath() != null) {
+                // Le carnet a déjà été sauvegardé, on utilise le chemin existant
+                carnet.saveToFile(carnet.getPath());
+                System.out.println("Carnet saved to existing file: " + carnet.getPath());
+            } else {
+                // Le carnet n'a pas encore été sauvegardé, on utilise le FileChooser
+                FileChooser choixfichier = new FileChooser();
+                choixfichier.setTitle("Sauvegarder votre Carnet");
+                choixfichier.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("json", "*.json"),
+                        new FileChooser.ExtensionFilter("All Files", "*.*"));
+
+                File selectedFile = choixfichier.showSaveDialog(titre.getScene().getWindow());
+                if (selectedFile != null) {
+                    carnet.saveToFile(selectedFile.getAbsolutePath());
+                    System.out.println("Carnet saved to new file: " + selectedFile.getAbsolutePath());
+                }
+            }
         }
     }
 }

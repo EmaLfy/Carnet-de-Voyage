@@ -17,13 +17,21 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ba7544;" BorderPane.alignment="CENTER">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#sortir" style="-fx-background-color: #ba7544;" text="Quit" textFill="#ffcaa5">
+          <Button mnemonicParsing="false" onAction="#toFirstPage" style="-fx-background-color: #ba7544;" text="Home" textFill="#ffcaa5">
                <font>
                   <Font name="Abyssinica SIL" size="17.0" />
                </font>
                <padding>
                   <Insets right="20.0" />
                </padding></Button>
+            <Button mnemonicParsing="false" onAction="#sortir" style="-fx-background-color: #ba7544;" text="Quit" textFill="#ffcaa5">
+               <font>
+                  <Font name="Abyssinica SIL" size="17.0" />
+               </font>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Button>
         </buttons>
       </ButtonBar>
    </bottom>
@@ -78,7 +86,7 @@
                      <center>
                         <BorderPane prefHeight="328.0" prefWidth="398.0" style="-fx-padding: 40;" BorderPane.alignment="CENTER">
                            <top>
-                              <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="342.0" style="-fx-background-color: #f8efcc;" text="New Page ............................... 1" textFill="#863d0d" BorderPane.alignment="BOTTOM_CENTER">
+                              <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="342.0" style="-fx-background-color: #f8efcc;" text="Rédiger ................................... 1" textFill="#e0a886" BorderPane.alignment="BOTTOM_CENTER">
                                  <font>
                                     <Font name="Yrsa SemiBold" size="22.0" />
                                  </font>
@@ -88,14 +96,14 @@
                               </Button>
                            </top>
                            <center>
-                              <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="334.0" style="-fx-background-color: #f8efcc;" text="Feuilleter ............................... 2" textFill="#863d0d" BorderPane.alignment="CENTER">
+                              <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="334.0" style="-fx-background-color: #f8efcc;" text="Feuilleter ............................... 2" textFill="#e0a886" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Yrsa SemiBold" size="22.0" />
                                  </font>
                               </Button>
                            </center>
                            <bottom>
-                              <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="332.0" style="-fx-background-color: #f8efcc;" text="Modifier ................................. 3" textFill="#863d0d" BorderPane.alignment="CENTER">
+                              <Button mnemonicParsing="false" onAction="#chargerCarnet" prefHeight="32.0" prefWidth="332.0" style="-fx-background-color: #f8efcc;" text="Ouvrir .................................... 3" textFill="#863d0d" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Yrsa SemiBold" size="22.0" />
                                  </font>

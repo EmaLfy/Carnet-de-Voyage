@@ -28,15 +28,15 @@ public class Main extends Application {
         showFirstPage();
 
         // Add event handler for Enter key
-        primaryStage.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                try {
-                    showMenuPage();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        primaryStage.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+//            if (event.getCode() == KeyCode.ENTER) {
+//                try {
+//                    showMenuPage();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 
     public static Stage getPrimaryStage() {
@@ -51,6 +51,15 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(Main.class.getResource("/fxml/firstPage.fxml"));
         primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
         primaryStage.show();
+//        primaryStage.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+//            if (event.getCode() == KeyCode.ENTER) {
+//                try {
+//                    showMenuPage();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 
     public static void showMenuPage() throws Exception {

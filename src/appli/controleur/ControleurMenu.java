@@ -4,7 +4,10 @@ import appli.Main;
 import appli.carnet.Carnet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -36,7 +39,8 @@ public class ControleurMenu {
     }
 
     @FXML
-    public void sortir() {
+    public void sortir() throws IOException {
+        saveCarnet();
         System.exit(0);
     }
 
@@ -56,5 +60,40 @@ public class ControleurMenu {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void toFirstPage(){
+        try{
+            Main.showFirstPage();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void saveCarnet() throws IOException {
+        if (carnet != null) {
+            if (carnet.getPath() != null) {
+                // Le carnet a déjà été sauvegardé, on utilise le chemin existant
+                carnet.saveToFile(carnet.getPath());
+                System.out.println("Carnet saved to existing file: " + carnet.getPath());
+            } else {
+                // Le carnet n'a pas encore été sauvegardé, on utilise le FileChooser
+                FileChooser choixfichier = new FileChooser();
+                choixfichier.setTitle("Sauvegarder votre Carnet");
+                choixfichier.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("json", "*.json"),
+                        new FileChooser.ExtensionFilter("All Files", "*.*"));
+
+                File selectedFile = choixfichier.showSaveDialog(date.getScene().getWindow());
+                if (selectedFile != null) {
+                    carnet.saveToFile(selectedFile.getAbsolutePath());
+                    System.out.println("Carnet saved to new file: " + selectedFile.getAbsolutePath());
+                }
+            }
+        }
+    }
+
+    @FXML
+    public void ouvrirCarnet(){
     }
 }

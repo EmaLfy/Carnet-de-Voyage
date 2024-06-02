@@ -5,18 +5,21 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Page {
+    private int numPage;
     private LocalDate date;
     private String titre;
     private String texte;
 
-    public Page(LocalDate date) {
+    public Page(LocalDate date, int num) {
         System.out.println("\nCréation d'une page");
-        this.titre = "Titre";
+        this.titre = "";
         System.out.println("Titre : " + this.titre);
-        this.texte = "Texte";
+        this.texte = "";
         System.out.println("Texte : " + this.texte);
         this.date = date;
         System.out.println("Date : " + this.date);
+        this.numPage = num;
+        System.out.println("Numéro de page : " + this.numPage);
     }
 
     public String getTitre() {
@@ -44,7 +47,7 @@ public class Page {
     }
 
     public boolean estVierge(){
-        if(!Objects.equals(titre, "Titre") && !Objects.equals(texte, "Texte")){
+        if(!Objects.equals(titre, "") && !Objects.equals(texte, "")){
             return false;
         }
         return true;

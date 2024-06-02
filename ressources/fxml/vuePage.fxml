@@ -16,13 +16,21 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ba7544;" BorderPane.alignment="CENTER">
          <buttons>
-            <Button mnemonicParsing="false" onAction="#toMenu" style="-fx-background-color: #ba7544;" text="Menu" textFill="#ffcaa5">
+            <Button mnemonicParsing="false" onAction="#toFirstPage" style="-fx-background-color: #ba7544;" text="Home" textFill="#ffcaa5">
                <font>
                   <Font name="Abyssinica SIL" size="17.0" />
                </font>
                <padding>
                   <Insets right="20.0" />
                </padding></Button>
+            <Button mnemonicParsing="false" onAction="#toMenu" style="-fx-background-color: #ba7544;" text="Menu" textFill="#ffcaa5">
+               <font>
+                  <Font name="Abyssinica SIL" size="17.0" />
+               </font>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Button>
             <Button layoutX="825.0" layoutY="18.0" mnemonicParsing="false" onAction="#sortir" style="-fx-background-color: #ba7544;" text="Quit" textFill="#ffcaa5">
                <font>
                   <Font name="Abyssinica SIL" size="17.0" />
@@ -104,9 +112,23 @@
       <Pane prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </top>
    <left>
-      <Pane prefHeight="328.0" prefWidth="37.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="328.0" prefWidth="37.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="4.0" layoutY="197.0" mnemonicParsing="false" onAction="#precedent" prefHeight="135.0" prefWidth="29.0" style="-fx-background-color: #db9159;" text="&lt;" textFill="#e7c4ad">
+               <effect>
+                  <InnerShadow color="#bf6f35" />
+               </effect>
+            </Button>
+         </children></Pane>
    </left>
    <right>
-      <Pane prefHeight="328.0" prefWidth="35.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="328.0" prefWidth="35.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="3.0" layoutY="197.0" mnemonicParsing="false" onAction="#suivant" prefHeight="135.0" prefWidth="29.0" style="-fx-background-color: #db9159;" text="&gt;" textFill="#e7c4ad">
+               <effect>
+                  <InnerShadow color="#bf6f35" />
+               </effect>
+            </Button>
+         </children></Pane>
    </right>
 </BorderPane>

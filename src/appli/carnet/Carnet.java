@@ -1,14 +1,24 @@
 package appli.carnet;
 
+
+import appli.outils.LocalDateAdapter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class Carnet {
     private LocalDate debut;
     private Page[] pages;
     private int nbPages;
+    private String filePath;
 
     public Carnet(){
+        System.out.println("\nCréation d'un carnet");
 //        this.nbPages=1;
 //        this.debut = LocalDate.now();
 //        this.ajouterPages(this.nbPages);
@@ -32,7 +42,7 @@ public class Carnet {
     public void ajouterPages(int nbPages) {
         pages = new Page[nbPages];
         for (int i = 0; i < nbPages; i++) {
-            pages[i] = new Page(this.debut.plusDays(i));
+            pages[i] = new Page(this.debut.plusDays(i),i);
         }
     }
 
@@ -44,12 +54,7 @@ public class Carnet {
     }
 
     public Page getNewPage(){
-        for(Page p:pages){
-            if(p.estVierge()){
-                return p;
-            }
-        }
-        return pages[0]; // Si toutes les pages sont remplies, on retourne à la page numéro 1
+        return pages[0];
     }
 
     public int getNbPages() {
@@ -60,6 +65,10 @@ public class Carnet {
         return debut;
     }
 
+    public String getPath() {
+        return filePath;
+    }
+
     public LocalDate getDateFin() {
         return debut.plusDays(nbPages);
     }
@@ -67,6 +76,70 @@ public class Carnet {
     public LocalDate getDatePage(int index) {
         return debut.plusDays(index);
     }
+
+    // Méthode pour charger les données d'un fichier et les mettre à jour dans l'objet actuel
+    public void updateFromFile(File file) throws IOException {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
+        try (FileReader reader = new FileReader(file)) {
+            Carnet tempCarnet = gson.fromJson(reader, Carnet.class);
+            this.filePath = file.getAbsolutePath(); // Mettre à jour le chemin du fichier
+            System.out.println("Carnet loaded from file: " + this.filePath);
+
+            // Mettre à jour les informations du carnet actuel avec les données chargées
+            this.debut = tempCarnet.debut;
+            this.nbPages = tempCarnet.nbPages;
+            this.pages = tempCarnet.pages;
+
+            // Assurer que les pages sont correctement initialisées
+            if (this.pages == null || this.pages.length != this.nbPages) {
+                this.ajouterPages(this.nbPages);
+            } else {
+                // Mettre à jour les dates des pages
+                for (int i = 0; i < this.nbPages; i++) {
+                    if (this.pages[i] != null) {
+                        this.pages[i].setDate(this.debut.plusDays(i));
+                    } else {
+                        this.pages[i] = new Page(this.debut.plusDays(i), i);
+                    }
+                }
+            }
+        }
+    }
+
+
+    // Méthode pour sauvegarder dans un fichier
+    public void saveToFile(String filename) throws IOException {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .setPrettyPrinting()
+                .create();
+        try (FileWriter writer = new FileWriter(filename)) {
+            gson.toJson(this, writer);
+        }
+        this.filePath = filename; // Mettre à jour le chemin du fichier
+    }
+
+    // Méthode pour sauvegarder en utilisant le chemin du fichier existant
+    public void save() throws IOException {
+        if (filePath != null) {
+            saveToFile(filePath);
+        } else {
+            throw new IOException("File path not set");
+        }
+    }
+
+//    public static Carnet loadFromFile(String filename) throws IOException {
+//        Gson gson = new GsonBuilder()
+//                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+//                .create();
+//        try (FileReader reader = new FileReader(filename)) {
+//            Carnet carnet = gson.fromJson(reader, Carnet.class);
+//            carnet.filePath = filename; // Mettre à jour le chemin du fichier
+//            return carnet;
+//        }
+//    }
 
 
 
