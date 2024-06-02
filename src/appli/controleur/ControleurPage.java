@@ -4,12 +4,14 @@ import appli.Main;
 import appli.carnet.Carnet;
 import appli.carnet.Page;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 public class ControleurPage {
     private Carnet carnet;
@@ -26,6 +28,9 @@ public class ControleurPage {
     @FXML
     private TextArea texte;
 
+    @FXML
+    private Label date;
+
     public ControleurPage(Carnet carnetl){
         this.carnet=carnetl;
         this.page=carnet.getNewPage();
@@ -34,11 +39,15 @@ public class ControleurPage {
     public void initialize(){
         titre.setText(page.getTitre());
         texte.setText(page.getTexte());
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        date.setText(carnet.getPage(this.index).getDate().format(pattern));
     }
 
     public void updateData(){
         titre.setText(carnet.getPage(this.index).getTitre());
         texte.setText(carnet.getPage(this.index).getTexte());
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        date.setText(carnet.getPage(this.index).getDate().format(pattern));
     }
 
 

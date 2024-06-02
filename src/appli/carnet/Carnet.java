@@ -111,6 +111,9 @@ public class Carnet {
 
     // Méthode pour sauvegarder dans un fichier
     public void saveToFile(String filename) throws IOException {
+        if (!filename.toLowerCase().endsWith(".json")) {
+            filename += ".json";
+        }
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .setPrettyPrinting()
@@ -120,26 +123,6 @@ public class Carnet {
         }
         this.filePath = filename; // Mettre à jour le chemin du fichier
     }
-
-    // Méthode pour sauvegarder en utilisant le chemin du fichier existant
-    public void save() throws IOException {
-        if (filePath != null) {
-            saveToFile(filePath);
-        } else {
-            throw new IOException("File path not set");
-        }
-    }
-
-//    public static Carnet loadFromFile(String filename) throws IOException {
-//        Gson gson = new GsonBuilder()
-//                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
-//                .create();
-//        try (FileReader reader = new FileReader(filename)) {
-//            Carnet carnet = gson.fromJson(reader, Carnet.class);
-//            carnet.filePath = filename; // Mettre à jour le chemin du fichier
-//            return carnet;
-//        }
-//    }
 
 
 
