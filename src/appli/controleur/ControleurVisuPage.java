@@ -4,9 +4,6 @@ import appli.Main;
 import appli.carnet.Carnet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.stage.FileChooser;
-
-import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 

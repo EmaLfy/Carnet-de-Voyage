@@ -1,16 +1,13 @@
 package appli.carnet;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Objects;
 
 public class Page {
-    private int numPage;
     private LocalDate date;
     private String titre;
     private String texte;
 
-    public Page(LocalDate date, int num) {
+    public Page(LocalDate date) {
         //System.out.println("\nCréation d'une page");
         this.titre = "";
         //System.out.println("Titre : " + this.titre);
@@ -18,7 +15,6 @@ public class Page {
         //System.out.println("Texte : " + this.texte);
         this.date = date;
         //System.out.println("Date : " + this.date);
-        this.numPage = num;
         //System.out.println("Numéro de page : " + this.numPage);
     }
 

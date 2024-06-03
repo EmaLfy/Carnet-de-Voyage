@@ -38,7 +38,7 @@ public class Carnet {
     public void ajouterPages(int nbPages) {
         pages = new Page[nbPages];
         for (int i = 0; i < nbPages; i++) {
-            pages[i] = new Page(this.debut.plusDays(i),i);
+            pages[i] = new Page(this.debut.plusDays(i));
         }
     }
 
@@ -97,7 +97,7 @@ public class Carnet {
                     if (this.pages[i] != null) {
                         this.pages[i].setDate(this.debut.plusDays(i));
                     } else {
-                        this.pages[i] = new Page(this.debut.plusDays(i), i);
+                        this.pages[i] = new Page(this.debut.plusDays(i));
                     }
                 }
             }
