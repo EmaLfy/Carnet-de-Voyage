@@ -11,15 +11,15 @@ public class Page {
     private String texte;
 
     public Page(LocalDate date, int num) {
-        System.out.println("\nCréation d'une page");
+        //System.out.println("\nCréation d'une page");
         this.titre = "";
-        System.out.println("Titre : " + this.titre);
+        //System.out.println("Titre : " + this.titre);
         this.texte = "";
-        System.out.println("Texte : " + this.texte);
+        //System.out.println("Texte : " + this.texte);
         this.date = date;
-        System.out.println("Date : " + this.date);
+        //System.out.println("Date : " + this.date);
         this.numPage = num;
-        System.out.println("Numéro de page : " + this.numPage);
+        //System.out.println("Numéro de page : " + this.numPage);
     }
 
     public String getTitre() {
@@ -44,12 +44,5 @@ public class Page {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public boolean estVierge(){
-        if(!Objects.equals(titre, "") && !Objects.equals(texte, "")){
-            return false;
-        }
-        return true;
     }
 }

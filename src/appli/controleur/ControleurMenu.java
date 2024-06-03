@@ -75,7 +75,7 @@ public class ControleurMenu {
             if (carnet.getPath() != null) {
                 // Le carnet a déjà été sauvegardé, on utilise le chemin existant
                 carnet.saveToFile(carnet.getPath());
-                System.out.println("Carnet saved to existing file: " + carnet.getPath());
+                //System.out.println("Carnet saved to existing file: " + carnet.getPath());
             } else {
                 // Le carnet n'a pas encore été sauvegardé, on utilise le FileChooser
                 FileChooser choixfichier = new FileChooser();
@@ -87,13 +87,9 @@ public class ControleurMenu {
                 File selectedFile = choixfichier.showSaveDialog(date.getScene().getWindow());
                 if (selectedFile != null) {
                     carnet.saveToFile(selectedFile.getAbsolutePath());
-                    System.out.println("Carnet saved to new file: " + selectedFile.getAbsolutePath());
+                    //System.out.println("Carnet saved to new file: " + selectedFile.getAbsolutePath());
                 }
             }
         }
-    }
-
-    @FXML
-    public void ouvrirCarnet(){
     }
 }

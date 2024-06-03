@@ -18,10 +18,6 @@ public class Carnet {
     private String filePath;
 
     public Carnet(){
-        System.out.println("\nCréation d'un carnet");
-//        this.nbPages=1;
-//        this.debut = LocalDate.now();
-//        this.ajouterPages(this.nbPages);
     }
 
     public Carnet(LocalDate d, int nbJ) {
@@ -31,11 +27,11 @@ public class Carnet {
     }
 
     public void setData(LocalDate d, int nbj) {
-        System.out.println("\nCréation d'un carnet");
+        //System.out.println("\nCréation d'un carnet");
         this.debut = d;
-        System.out.println("Date de debut : " + this.debut);
+        //System.out.println("Date de debut : " + this.debut);
         this.nbPages = nbj;
-        System.out.println("Nombre de pages : " + this.nbPages);
+        //System.out.println("Nombre de pages : " + this.nbPages);
         this.ajouterPages(this.nbPages);
     }
 
@@ -85,7 +81,7 @@ public class Carnet {
         try (FileReader reader = new FileReader(file)) {
             Carnet tempCarnet = gson.fromJson(reader, Carnet.class);
             this.filePath = file.getAbsolutePath(); // Mettre à jour le chemin du fichier
-            System.out.println("Carnet loaded from file: " + this.filePath);
+            //System.out.println("Carnet loaded from file: " + this.filePath);
 
             // Mettre à jour les informations du carnet actuel avec les données chargées
             this.debut = tempCarnet.debut;
