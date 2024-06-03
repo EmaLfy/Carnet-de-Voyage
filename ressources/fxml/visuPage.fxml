@@ -62,7 +62,7 @@
                            <children>
                               <ImageView fx:id="photo" fitHeight="433.0" fitWidth="363.0" layoutX="27.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../Images/photo.jpg" />
+                                    <Image url="@../medias/photo_default.jpg" />
                                  </image>
                               </ImageView>
                            </children></Pane>

@@ -4,6 +4,10 @@ import appli.Main;
 import appli.carnet.Carnet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+
+import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
@@ -19,6 +23,9 @@ public class ControleurVisuPage {
 
     @FXML
     private Label date;
+
+    @FXML
+    private ImageView image;
 
     public ControleurVisuPage(Carnet carnetl){
         this.carnet= carnetl;
@@ -61,6 +68,7 @@ public class ControleurVisuPage {
     }
     @FXML
     public void sortir() throws IOException {
+        saveCarnet();
         System.exit(0);
     }
     @FXML
@@ -76,6 +84,29 @@ public class ControleurVisuPage {
             Main.showFirstPage();
         } catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void saveCarnet() throws IOException {
+        if (carnet != null) {
+            if (carnet.getPath() != null) {
+                // Le carnet a déjà été sauvegardé, on utilise le chemin existant
+                carnet.saveToFile(carnet.getPath());
+                //System.out.println("Carnet saved to existing file: " + carnet.getPath());
+            } else {
+                // Le carnet n'a pas encore été sauvegardé, on utilise le FileChooser
+                FileChooser choixfichier = new FileChooser();
+                choixfichier.setTitle("Sauvegarder votre Carnet");
+                choixfichier.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("json", "*.json"),
+                        new FileChooser.ExtensionFilter("All Files", "*.*"));
+
+                File selectedFile = choixfichier.showSaveDialog(titre.getScene().getWindow());
+                if (selectedFile != null) {
+                    carnet.saveToFile(selectedFile.getAbsolutePath());
+                    //System.out.println("Carnet saved to new file: " + selectedFile.getAbsolutePath());
+                }
+            }
         }
     }
 

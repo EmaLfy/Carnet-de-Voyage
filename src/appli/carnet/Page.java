@@ -6,6 +6,7 @@ public class Page {
     private LocalDate date;
     private String titre;
     private String texte;
+    private String photoPath;
 
     public Page(LocalDate date) {
         //System.out.println("\nCréation d'une page");
@@ -16,6 +17,7 @@ public class Page {
         this.date = date;
         //System.out.println("Date : " + this.date);
         //System.out.println("Numéro de page : " + this.numPage);
+        this.photoPath = "./src/appli/carnet/ressources/medias/photo_default.jpg";
     }
 
     public String getTitre() {
@@ -40,5 +42,13 @@ public class Page {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
     }
 }

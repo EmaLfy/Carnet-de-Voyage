@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -29,16 +31,17 @@ public class ControleurPage {
     @FXML
     private Label date;
 
+    @FXML
+    private ImageView photo;
+
     public ControleurPage(Carnet carnetl){
         this.carnet=carnetl;
-        this.page=carnet.getNewPage();
+        //this.page=carnet.getNewPage();
     }
 
     public void initialize(){
-        titre.setText(page.getTitre());
-        texte.setText(page.getTexte());
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        date.setText(carnet.getPage(this.index).getDate().format(pattern));
+        updateData();
+        photo.setOnMouseClicked(event -> choisirImage());
     }
 
     public void updateData(){
@@ -46,6 +49,18 @@ public class ControleurPage {
         texte.setText(carnet.getPage(this.index).getTexte());
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         date.setText(carnet.getPage(this.index).getDate().format(pattern));
+        updateImage();
+    }
+
+    private void updateImage() {
+        String photoPath = carnet.getPage(this.index).getPhotoPath();
+        if (photoPath != null && !photoPath.isEmpty()) {
+            Image image = new Image("file:" + photoPath);
+            photo.setImage(image);
+        } else {
+            Image image = new Image("file:./src/appli/carnet/ressources/medias/photo_default.jpg");
+            photo.setImage(image);
+        }
     }
 
 
@@ -105,10 +120,26 @@ public class ControleurPage {
             currentPage.setTexte(compteRendu);
 
             // Afficher les valeurs pour vérifier
-            System.out.println("Page mise à jour :");
-            System.out.println("Date: " + currentPage.getDate());
-            System.out.println("Titre: " + currentPage.getTitre());
-            System.out.println("Compte Rendu: " + currentPage.getTexte());
+//            System.out.println("Page mise à jour :");
+//            System.out.println("Date: " + currentPage.getDate());
+//            System.out.println("Titre: " + currentPage.getTitre());
+//            System.out.println("Compte Rendu: " + currentPage.getTexte());
+        }
+    }
+
+    @FXML
+    public void choisirImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+
+        File selectedFile = fileChooser.showOpenDialog(titre.getScene().getWindow());
+        if (selectedFile != null) {
+            String photoPath = selectedFile.getAbsolutePath();
+            carnet.getPage(this.index).setPhotoPath(photoPath);
+            updateImage();
         }
     }
 

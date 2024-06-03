@@ -1,0 +1,24 @@
+{
+  "debut": "2024-06-12",
+  "pages": [
+    {
+      "date": "2024-06-12",
+      "titre": "Jour 1",
+      "texte": "visite de la ville à trvaers les ruelles",
+      "photoPath": "/home/emma/Documents/Cours/IG/Carnet de Voyage/Carnet/CarnetVoyage/ressources/medias/PhotosTests/jour1.jpg"
+    },
+    {
+      "date": "2024-06-13",
+      "titre": "Jour 2",
+      "texte": "Detente au ruisseau",
+      "photoPath": "/home/emma/Documents/Cours/IG/Carnet de Voyage/Carnet/CarnetVoyage/ressources/medias/PhotosTests/jour2.jpg"
+    },
+    {
+      "date": "2024-06-14",
+      "titre": "",
+      "texte": "",
+      "photoPath": "./src/appli/carnet/ressources/medias/photo_default.jpg"
+    }
+  ],
+  "nbPages": 3
+}
