@@ -1,39 +1,32 @@
 @startuml
-abstract class file.Fichier{
-    + isImage()
-    + isAudio()
-    + isVideo()
-}
-
-class file.Image{
-}
-
-class file.Audio{
-}
-
-class file.Video{
-}
-
-file.Image --|> file.Fichier
-file.Audio --|> file.Fichier
-file.Video --|> file.Fichier
 
 class carnet.Page{
-    - Date date
-    - String Titre
-    - String texte
-    + ajouter(Fichier f)
-    + ajouterText(String s)
-    + ajouterTitre(String s)
-    + getTitre()
-    + getText()
-    + getFichier()
+    + LocalDate date
+    + String Titre
+    + String texte
+    + int numPage;
+    - getTitre()
+    - setTitre()
+    - getTexte()
+    - setTexte()
+    - getDate()
+    - setDate()
 }
 
 class carnet.Carnet{
-    - String titreVoyage
-    + ajouter(Page p)
-    + getCarnet()
+    + LocalDate debut;
+    + int nbPages;
+    + String filePath;
+    -  setData()
+    - ajouterPages()
+    - getPages()
+    - getNewPage()
+    - getNbPages()
+    - getDateDeb()
+    - getPath()
+    - updateFromFile()
+    - saveToFile()
+
 }
 class carnet.SujetObserve{
     - ArrayList<Observateur> observateurs
@@ -47,62 +40,81 @@ carnet.Page -- "*"carnet.Carnet
 
 carnet.SujetObserve <|-- carnet.Carnet
 
-carnet.Page  -- "0..7"file.Fichier
 
 
 controleur.Observateur "*" -- carnet.SujetObserve
 controleur.ControleurPage ..|> controleur.Observateur
 controleur.ControleurFirstPage ..|> controleur.Observateur
 controleur.ControleurMenu ..|> controleur.Observateur
-controleur.ControleurVignettes ..|> controleur.Observateur
-controleur.ControleurModifPage ..|> controleur.Observateur
+controleur.ControleurMenuPage ..|> controleur.Observateur
+controleur.ControleurVisuPage ..|> controleur.Observateur
 
 
 class controleur.ControleurFirstPage{
-    - Button sortie
-    - Button menu
+    - sortir()
+    - toMenu()
 }
 
 class controleur.ControleurMenu{
-    - Button sortie
-    - Button newPage
-    - Button visu
-    - Button Modif
-    + sortir()
-    + new
+    + Carnet carnet;
+    + Label date;
+    + Label jours;
+    - initialize()
+    - getCarnet()
+    - sortir()
+    - toFirstPage()
+    - toMenu()
+    - toVisuPage()
+    - SaveCarnet()
 }
 
-class controleur.ControleurModifPage{
-    - Button sortie
-    - Button addRes1
-    - Button addRes2
-    - Button addRes3
-    - Button addRes4
-    - Button addRes5
-    - Button addRes6
-    - Button addRes7
-    - TextField Titre
-    - TextField text
+class controleur.ControleurMenuPage{
+    + Carnet carnet;
+    + DatePicker date;
+    + TextField jours;
+    - initialize()
+    - sortir()
+    - toMenu()
+    - toFirstPage()
+    - suivant()
+    - precedent()
+    - saveCarnet()
+    - chargerCarnet()
+    - updateData()
 }
 
-class controleur.ControleurVignettes{
-    - Button sortie
-    - Button toPage
-    - ArrayList<Button> vignettePages
+class controleur.ControleurVisuPage{
+    + Carnet carnet;
+    + int index;
+    + Label titre;
+    + Label texte;
+    + Label date;
+    - initialize()
+    - updateData()
+    - sortir()
+    - toMenu()
+    - toFirstPage()
+    - suivant()
+    - precedent()
 }
+
 
 class controleur.ControleurPage{
-    - Label titre
-    - Label texte
-    - ImageView Res1
-    - ImageView Res2
-    - ImageView Res3
-    - ImageView Res4
-    - ImageView Res5
-    - ImageView Res6
-    - ImageView Res7
-    - Button sortie
-    - Button toVignette
+    + Carnet carnet;
+    + Page page;
+    + int index;
+    + TextField titre
+    + TextField texte
+    + Label date
+    - initialize()
+    - updateData()
+    - sortir()
+    - toMenu()
+    - toFirstPage()
+    - suivant()
+    - precedent()
+    - save()
+    - saveCarnet()
 }
 
 interface controleur.Observateur{

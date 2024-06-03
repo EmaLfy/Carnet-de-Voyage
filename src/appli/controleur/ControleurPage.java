@@ -18,8 +18,6 @@ public class ControleurPage {
 
     private Page page;
 
-    private int currentPageIndex;
-
     private int index;
 
     @FXML
