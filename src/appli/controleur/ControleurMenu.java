@@ -68,30 +68,25 @@ public class ControleurMenu implements Observateur{
         }
     }
 
+    @FXML
     public void saveCarnet() throws IOException {
         if (carnet != null) {
-            if(carnet.getNbPages()!=0) {
-                if (carnet.getPath() != null) {
-                    // Le carnet a déjà été sauvegardé, on utilise le chemin existant
-                    carnet.saveToFile(carnet.getPath());
-                    //System.out.println("Carnet saved to existing file: " + carnet.getPath());
-                } else {
-                    // Le carnet n'a pas encore été sauvegardé, on utilise le FileChooser
-                    FileChooser choixfichier = new FileChooser();
-                    choixfichier.setTitle("Sauvegarder votre Carnet");
-                    choixfichier.getExtensionFilters().addAll(
-                            new FileChooser.ExtensionFilter("json", "*.json"),
-                            new FileChooser.ExtensionFilter("All Files", "*.*"));
+            // Création d'un FileChooser pour sélectionner ou spécifier le fichier de sauvegarde
+            FileChooser choixfichier = new FileChooser();
+            choixfichier.setTitle("Sauvegarder votre Carnet");
+            choixfichier.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Fichiers JSON", "*.json"),
+                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
 
-                    File selectedFile = choixfichier.showSaveDialog(date.getScene().getWindow());
-                    if (selectedFile != null) {
-                        carnet.saveToFile(selectedFile.getAbsolutePath());
-                        //System.out.println("Carnet saved to new file: " + selectedFile.getAbsolutePath());
-                    }
-                }
+            File selectedFile = choixfichier.showSaveDialog(date.getScene().getWindow());
+            if (selectedFile != null) {
+                // Sauvegarde du carnet dans le fichier sélectionné
+                carnet.saveToFile(selectedFile.getAbsolutePath());
             }
         }
     }
+
+
 
     @Override
     public void reagir() {

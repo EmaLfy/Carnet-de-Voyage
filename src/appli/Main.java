@@ -2,10 +2,7 @@ package appli;
 
 import appli.carnet.Carnet;
 import appli.carnet.Page;
-import appli.controleur.ControleurMenu;
-import appli.controleur.ControleurMenuPage;
-import appli.controleur.ControleurPage;
-import appli.controleur.ControleurVisuPage;
+import appli.controleur.*;
 import appli.outils.TailleComposant;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +20,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //this.carnet = new Carnet();
         Main.primaryStage = primaryStage;
         primaryStage.setTitle("-- Carnet de Voyage --");
         showFirstPage();
@@ -48,9 +46,20 @@ public class Main extends Application {
     }
 
     public static void showFirstPage() throws Exception {
-        Parent root = FXMLLoader.load(Main.class.getResource("/fxml/firstPage.fxml"));
-        primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
-        primaryStage.show();
+        if(carnet==null){
+            Parent root = FXMLLoader.load(Main.class.getResource("/fxml/firstPage.fxml"));
+            primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
+            primaryStage.show();
+        }else {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/firstPage.fxml"));
+            loader.setControllerFactory(iC -> new ControleurFirstPage(carnet));
+            Parent root = loader.load();
+            primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
+            primaryStage.show();
+        }
+//        Parent root = FXMLLoader.load(Main.class.getResource("/fxml/firstPage.fxml"));
+//        primaryStage.setScene(new Scene(root, tailleComposant.windWidth(), tailleComposant.windHeight()));
+//        primaryStage.show();
 //        primaryStage.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 //            if (event.getCode() == KeyCode.ENTER) {
 //                try {

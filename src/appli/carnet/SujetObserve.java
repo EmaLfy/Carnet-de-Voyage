@@ -1,11 +1,14 @@
 package appli.carnet;
 
 import appli.controleur.Observateur;
+import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 
 public class SujetObserve {
-    private ArrayList<Observateur> observateurs = new ArrayList<>();
+
+    @Expose(serialize = false, deserialize = false)
+    private transient ArrayList<Observateur> observateurs = new ArrayList<>();
 
     public void ajouterObservateur(Observateur o) {
         observateurs.add(o);
@@ -16,8 +19,5 @@ public class SujetObserve {
             o.reagir();
         }
     }
-//    public ArrayList<Observateur> getObservateurs() {
-//        return observateurs;
-//    }
-
 }
+

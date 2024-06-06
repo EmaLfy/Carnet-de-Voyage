@@ -5,6 +5,7 @@ import appli.outils.LocalDateAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import javax.lang.model.element.Modifier;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -113,12 +114,16 @@ public class Carnet extends SujetObserve {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .setPrettyPrinting()
+                .excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT) // Exclure les champs avec le modificateur transient
                 .create();
         try (FileWriter writer = new FileWriter(filename)) {
             gson.toJson(this, writer);
         }
         this.filePath = filename; // Mettre à jour le chemin du fichier
     }
+
+
+
 
 
 
