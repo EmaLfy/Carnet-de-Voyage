@@ -13,13 +13,12 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.format.DateTimeFormatter;
 
 public class ControleurPage {
     private Carnet carnet;
-
     private Page page;
-
     private int index;
 
     @FXML
@@ -35,8 +34,8 @@ public class ControleurPage {
     private ImageView photo;
 
     public ControleurPage(Carnet carnetl){
-        this.carnet=carnetl;
-        //this.page=carnet.getNewPage();
+        this.carnet = carnetl;
+        this.index = 0; // Initialiser l'index à 0
     }
 
     public void initialize(){
@@ -45,22 +44,32 @@ public class ControleurPage {
     }
 
     public void updateData(){
-        titre.setText(carnet.getPage(this.index).getTitre());
-        texte.setText(carnet.getPage(this.index).getTexte());
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        date.setText(carnet.getPage(this.index).getDate().format(pattern));
-        updateImage();
+        Page currentPage = carnet.getPage(this.index);
+        if (currentPage != null) {
+            titre.setText(currentPage.getTitre());
+            texte.setText(currentPage.getTexte());
+            DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            date.setText(currentPage.getDate().format(pattern));
+            updateImage();
+        }
     }
 
     private void updateImage() {
-        String photoPath = carnet.getPage(this.index).getPhotoPath();
+        String photoPath = this.carnet.getPage(this.index).getPhotoPath();
+        Image image;
         if (photoPath != null && !photoPath.isEmpty()) {
-            Image image = new Image("file:" + photoPath);
-            photo.setImage(image);
+            image = new Image("file:" + photoPath);
         } else {
-            Image image = new Image("file:./src/appli/carnet/ressources/medias/photo_default.jpg");
-            photo.setImage(image);
+            // Charger l'image par défaut
+            InputStream defaultImageStream = getClass().getResourceAsStream("/medias/photo_default.jpg");
+            if (defaultImageStream != null) {
+                image = new Image(defaultImageStream);
+            } else {
+                System.out.println("Default image not found!");
+                return;
+            }
         }
+        photo.setImage(image);
     }
 
 
@@ -80,7 +89,7 @@ public class ControleurPage {
     }
 
     public void toFirstPage(){
-        try{
+        try {
             Main.showFirstPage();
         } catch (Exception e){
             e.printStackTrace();
@@ -89,19 +98,19 @@ public class ControleurPage {
 
     @FXML
     public void suivant(){
-        if(index<carnet.getNbPages()-1){
+        if (index < carnet.getNbPages() - 1) {
             index++;
-        }else{
-            index=0;
+        } else {
+            index = 0;
         }
         updateData();
     }
 
     @FXML
     public void precedent(){
-        if(index==0){
-            index= carnet.getNbPages()-1;
-        }else{
+        if (index == 0) {
+            index = carnet.getNbPages() - 1;
+        } else {
             index--;
         }
         updateData();
@@ -109,21 +118,20 @@ public class ControleurPage {
 
     @FXML
     public void save() {
-        // Récupérer les valeurs des champs de texte
         String titreP = titre.getText();
         String compteRendu = texte.getText();
 
-        // Mettre à jour la page actuelle dans le carnet
         Page currentPage = carnet.getPage(index);
         if (currentPage != null) {
             currentPage.setTitre(titreP);
             currentPage.setTexte(compteRendu);
 
-            // Afficher les valeurs pour vérifier
-//            System.out.println("Page mise à jour :");
-//            System.out.println("Date: " + currentPage.getDate());
-//            System.out.println("Titre: " + currentPage.getTitre());
-//            System.out.println("Compte Rendu: " + currentPage.getTexte());
+            // Vérifiez et définissez le chemin de la photo par défaut si nécessaire
+            if (photo.getImage() != null && photo.getImage().getUrl() != null) {
+                currentPage.setPhotoPath(photo.getImage().getUrl().replace("file:", ""));
+            } else {
+                currentPage.setPhotoPath(getClass().getResource("/medias/photo_default.jpg").toString());
+            }
         }
     }
 
@@ -148,7 +156,6 @@ public class ControleurPage {
             if (carnet.getPath() != null) {
                 // Le carnet a déjà été sauvegardé, on utilise le chemin existant
                 carnet.saveToFile(carnet.getPath());
-                //System.out.println("Carnet saved to existing file: " + carnet.getPath());
             } else {
                 // Le carnet n'a pas encore été sauvegardé, on utilise le FileChooser
                 FileChooser choixfichier = new FileChooser();
@@ -160,10 +167,10 @@ public class ControleurPage {
                 File selectedFile = choixfichier.showSaveDialog(titre.getScene().getWindow());
                 if (selectedFile != null) {
                     carnet.saveToFile(selectedFile.getAbsolutePath());
-                    //System.out.println("Carnet saved to new file: " + selectedFile.getAbsolutePath());
                 }
             }
         }
     }
 }
+
 

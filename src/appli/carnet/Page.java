@@ -1,6 +1,7 @@
 package appli.carnet;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Page {
     private LocalDate date;
@@ -17,8 +18,17 @@ public class Page {
         this.date = date;
         //System.out.println("Date : " + this.date);
         //System.out.println("Numéro de page : " + this.numPage);
-        this.photoPath = "./src/appli/carnet/ressources/medias/photo_default.jpg";
+        this.photoPath=null; //= getDefaultPhotoPath();
     }
+
+//    private String getDefaultPhotoPath() {
+//        String defaultPhotoPath = "/medias/photo_default.jpg";
+//        System.out.println("Default photo path: " + getClass().getResource(defaultPhotoPath));
+//        return getClass().getResource(defaultPhotoPath) != null
+//                ? getClass().getResource(defaultPhotoPath).toString()
+//                : null;
+//    }
+
 
     public String getTitre() {
         return titre;
