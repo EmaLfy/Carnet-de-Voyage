@@ -15,3 +15,85 @@
     -fx-background-color: #f8efcc;
     -fx-text-fill: #863d0d;
 }
+
+/* Style pour le DatePicker */
+.date-picker {
+    -fx-background-color: #f8efcc;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Style pour les cellules du calendrier */
+
+.date-picker-popup .calendar-pane .calendar-day-cell {
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup .calendar-pane .calendar-day-cell:hover {
+    -fx-background-color: #f8efcc;
+}
+
+.date-picker-popup .calendar-pane .calendar-day-cell:selected {
+    -fx-background-color: #db9159;
+    -fx-text-fill: #fbd763;
+}
+
+/* Style pour le champ de texte */
+.date-picker .text-field {
+    -fx-background-color: #f8efcc;
+    -fx-border-color: #863d0d;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Style pour l'icône du DatePicker */
+.date-picker .arrow-button .arrow {
+    -fx-background-color: #db9159; /* Couleur de l'icône */
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #f8efcc; /* Couleur de fond du bouton */
+    -fx-border-color: #863d0d; /* Couleur de la bordure */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+/* Style pour le pourtour de la fenêtre du calendrier */
+.date-picker-popup .calendar-pane {
+    -fx-background-color: #f8efcc; /* Couleur de fond */
+    -fx-border-color: #863d0d; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Épaisseur de la bordure */
+    -fx-border-radius: 5px; /* Rayon des coins */
+    -fx-background-radius: 5px;
+}
+
+/* Style pour le fond de la zone de sélection de date */
+.date-picker-popup .month-year-pane {
+    -fx-background-color: #f8efcc; /* Couleur de fond */
+}
+
+.date-picker-popup .calendar-grid {
+    -fx-background-color: #f8efcc; /* Couleur de fond */
+}
+
+/* Style pour les cases lorsque la souris est dessus */
+.date-picker-popup .calendar-grid .week-number-cell:hover,
+.date-picker-popup .calendar-grid .calendar-day-cell:hover {
+    -fx-background-color: #db9159; /* Couleur de fond au survol */
+}
+
+/* Style pour le numéro de semaine */
+.date-picker-popup .calendar-grid .week-number-cell {
+    -fx-background-color: #f8efcc; /* Couleur de fond */
+    -fx-text-fill: #863d0d; /* Couleur du texte */
+}
+
+/* Style pour le champ de texte */
+.text-field {
+    -fx-background-color: #f8efcc;
+    -fx-border-color: #863d0d;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+

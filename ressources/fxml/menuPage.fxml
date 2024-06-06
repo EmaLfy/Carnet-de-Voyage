@@ -60,12 +60,8 @@
                      <right>
                         <Pane prefHeight="328.0" prefWidth="443.0" BorderPane.alignment="CENTER">
                            <children>
-                              <DatePicker id="Date" fx:id="date" layoutX="135.0" layoutY="85.0" prefHeight="26.0" prefWidth="173.0" promptText="Date Début" style="-fx-background-color: #f8efcc; -fx-control-inner-background: #f8efcc; -fx-text-fill: #863d0d;">
-                                 <effect>
-                                    <InnerShadow color="#dacd9e" />
-                                 </effect>
-                              </DatePicker>
-                              <TextField id="jours" fx:id="jours" layoutX="170.0" layoutY="161.0" prefHeight="26.0" prefWidth="104.0" promptText="Nombre de jours" style="-fx-background-color: #f8efcc; -fx-text-fill: #863d0d;">
+                              <DatePicker id="Date" fx:id="date" layoutX="135.0" layoutY="85.0" prefHeight="26.0" prefWidth="173.0" promptText="Date Début" style="-fx-background-color: #f8efcc; -fx-control-inner-background: #f8efcc; -fx-text-fill: #863d0d;" stylesheets="@../styles/styles.css" />
+                              <TextField id="jours" fx:id="jours" layoutX="170.0" layoutY="161.0" prefHeight="26.0" prefWidth="104.0" promptText="Nombre de jours" style="-fx-background-color: #f8efcc; -fx-text-fill: #863d0d;" stylesheets="@../styles/styles.css">
                                  <font>
                                     <Font name="Yrsa SemiBold" size="13.0" />
                                  </font>
@@ -81,6 +77,11 @@
                                     <Blend />
                                  </effect>
                               </Button>
+                              <Label layoutX="92.0" layoutY="38.0" text="- Création d'un nouveau carnet -" textFill="#863d0d">
+                                 <font>
+                                    <Font name="Yrsa SemiBold" size="20.0" />
+                                 </font>
+                              </Label>
                            </children></Pane>
                      </right>
                      <center>

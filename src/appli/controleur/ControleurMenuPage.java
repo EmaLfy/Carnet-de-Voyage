@@ -1,14 +1,19 @@
 package appli.controleur;
 
 import appli.carnet.Carnet;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import appli.Main;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 
 public class ControleurMenuPage implements Observateur{
@@ -27,21 +32,58 @@ public class ControleurMenuPage implements Observateur{
 
     @FXML
     public void updateCarnet() {
-        LocalDate d=date.getValue();
-        //carnet.setDebut(date.getValue());
-        int nbJours = Integer.parseInt(jours.getText());
-        //carnet.setNbPages(nbJours);
-        this.carnet.setData(d, nbJours);
+        LocalDate d = date.getValue();
+        String joursText = jours.getText();
 
+        // Vérifier si la date est sélectionnée
+        if (d == null) {
+            afficherMessageErreur("Veuillez sélectionner une date.");
+            return;
+        }
+
+        // Vérifier si le champ jours est vide
+        if (joursText.isEmpty()) {
+            afficherMessageErreur("Veuillez saisir le nombre de jours.");
+            return;
+        }
+
+        // Vérifier si le champ jours contient un nombre
+        int nbJours;
+        try {
+            nbJours = Integer.parseInt(joursText);
+        } catch (NumberFormatException e) {
+            afficherMessageErreur("Le nombre de jours doit être un entier.");
+            return;
+        }
+
+        // Vérifier si le nombre de jours est positif
+        if (nbJours <= 0) {
+            afficherMessageErreur("Le nombre de jours doit être supérieur à zéro.");
+            return;
+        }
+
+        // Si tous les champs sont valides, mettre à jour le carnet
+        carnet.setData(d, nbJours);
         toMenu();
-//        if (carnet != null) {
-//            LocalDate d=date.getValue();
-//            //carnet.setDebut(date.getValue());
-//            int nbJours = Integer.parseInt(jours.getText());
-//            //carnet.setNbPages(nbJours);
-//            carnet.setData(d, nbJours);
-//        }
     }
+
+    private void afficherMessageErreur(String message) {
+        // Afficher le message d'erreur dans une boîte de dialogue ou une alerte
+        // par exemple :
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        URL cssURL = getClass().getResource("/styles/styles.css");
+        if (cssURL != null) {
+            alert.getDialogPane().getStylesheets().add(cssURL.toExternalForm());
+            alert.getDialogPane().getStyleClass().add("alert");
+        } else {
+            System.out.println("Stylesheet not found!");
+        }
+        alert.show();
+    }
+
 
     public void toFirstPage(){
         try{
