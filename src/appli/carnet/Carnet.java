@@ -11,7 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class Carnet {
+public class Carnet extends SujetObserve {
     private LocalDate debut;
     private Page[] pages;
     private int nbPages;

@@ -3,7 +3,7 @@ package appli.carnet;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Page {
+public class Page extends SujetObserve{
     private LocalDate date;
     private String titre;
     private String texte;

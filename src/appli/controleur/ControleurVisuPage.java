@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.format.DateTimeFormatter;
 
-public class ControleurVisuPage {
+public class ControleurVisuPage implements Observateur{
     private Carnet carnet;
     private int index;
 
@@ -32,7 +32,7 @@ public class ControleurVisuPage {
     public ControleurVisuPage(Carnet carnetl){
         this.carnet= carnetl;
         this.index=0;
-
+        this.carnet.ajouterObservateur(this);
     }
 
     @FXML
@@ -42,7 +42,7 @@ public class ControleurVisuPage {
         }else{
             index=0;
         }
-        updateData();
+        carnet.notifierObservateurs();
     }
 
     @FXML
@@ -52,11 +52,11 @@ public class ControleurVisuPage {
         }else{
             index--;
         }
-        updateData();
+        carnet.notifierObservateurs();
     }
 
     public void initialize(){
-        updateData();
+        carnet.notifierObservateurs();
 
     }
 
@@ -130,4 +130,8 @@ public class ControleurVisuPage {
         }
     }
 
+    @Override
+    public void reagir() {
+        updateData();
+    }
 }

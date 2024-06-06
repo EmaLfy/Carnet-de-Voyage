@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class ControleurMenuPage {
+public class ControleurMenuPage implements Observateur{
     private Carnet carnet;
 
     @FXML
@@ -22,6 +22,7 @@ public class ControleurMenuPage {
 
     public ControleurMenuPage(Carnet carnetl) {
         this.carnet = carnetl;
+        this.carnet.ajouterObservateur(this);
     }
 
     @FXML
@@ -119,8 +120,9 @@ public class ControleurMenuPage {
         toMenu();
     }
 
+    @Override
+    public void reagir() {
 
-
-
+    }
 }
 

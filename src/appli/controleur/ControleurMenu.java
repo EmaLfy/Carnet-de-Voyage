@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
-public class ControleurMenu {
+public class ControleurMenu implements Observateur{
     private Carnet carnet;
 
     @FXML
@@ -21,6 +21,7 @@ public class ControleurMenu {
 
     public ControleurMenu(Carnet carnetl){
         this.carnet=carnetl;
+        this.carnet.ajouterObservateur(this);
     }
 
     public void initialize(){
@@ -90,5 +91,10 @@ public class ControleurMenu {
                 }
             }
         }
+    }
+
+    @Override
+    public void reagir() {
+
     }
 }

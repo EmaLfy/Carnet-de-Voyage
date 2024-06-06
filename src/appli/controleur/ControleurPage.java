@@ -21,9 +21,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 
-public class ControleurPage {
+public class ControleurPage implements Observateur{
     private Carnet carnet;
-    private Page page;
     private int index;
 
     @FXML
@@ -41,6 +40,7 @@ public class ControleurPage {
     public ControleurPage(Carnet carnetl){
         this.carnet = carnetl;
         this.index = 0; // Initialiser l'index à 0
+        this.carnet.ajouterObservateur(this);
     }
 
     public void initialize(){
@@ -108,7 +108,8 @@ public class ControleurPage {
         } else {
             index = 0;
         }
-        updateData();
+        carnet.notifierObservateurs();
+        //reagir();
     }
 
     @FXML
@@ -118,7 +119,7 @@ public class ControleurPage {
         } else {
             index--;
         }
-        updateData();
+        carnet.notifierObservateurs();
     }
 
     @FXML
@@ -173,7 +174,7 @@ public class ControleurPage {
         if (selectedFile != null) {
             String photoPath = selectedFile.getAbsolutePath();
             carnet.getPage(this.index).setPhotoPath(photoPath);
-            updateImage();
+            carnet.notifierObservateurs();
         }
     }
 
@@ -196,6 +197,11 @@ public class ControleurPage {
                 }
             }
         }
+    }
+
+    @Override
+    public void reagir() {
+        updateData();
     }
 }
 

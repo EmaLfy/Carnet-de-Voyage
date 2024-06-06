@@ -3,7 +3,7 @@ package appli.controleur;
 import appli.Main;
 import javafx.fxml.FXML;
 
-public class ControleurFirstPage {
+public class ControleurFirstPage implements Observateur{
 
     @FXML
     public void sortir() {
@@ -17,5 +17,10 @@ public class ControleurFirstPage {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void reagir() {
+
     }
 }
