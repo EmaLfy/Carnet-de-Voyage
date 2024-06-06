@@ -1,0 +1,17 @@
+/* styles.css */
+.alert {
+    -fx-background-color: #ba444e;
+    -fx-text-fill: #fbd763;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+.alert .header-panel {
+    -fx-background-color: #db9159;
+    -fx-text-fill: #f8efcc;
+}
+
+.alert .content {
+    -fx-background-color: #f8efcc;
+    -fx-text-fill: #863d0d;
+}

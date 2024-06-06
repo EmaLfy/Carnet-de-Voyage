@@ -3,17 +3,22 @@ package appli.controleur;
 import appli.Main;
 import appli.carnet.Carnet;
 import appli.carnet.Page;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.time.format.DateTimeFormatter;
 
 public class ControleurPage {
@@ -129,9 +134,30 @@ public class ControleurPage {
             // Vérifiez et définissez le chemin de la photo par défaut si nécessaire
             if (photo.getImage() != null && photo.getImage().getUrl() != null) {
                 currentPage.setPhotoPath(photo.getImage().getUrl().replace("file:", ""));
-            } else {
-                currentPage.setPhotoPath(getClass().getResource("/medias/photo_default.jpg").toString());
             }
+            // Message de confirmation
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText("Page enregistrée avec succès!");
+
+            // Charger et appliquer la feuille de style
+            URL cssURL = getClass().getResource("/styles/styles.css");
+            if (cssURL != null) {
+                alert.getDialogPane().getStylesheets().add(cssURL.toExternalForm());
+                alert.getDialogPane().getStyleClass().add("alert");
+            } else {
+                System.out.println("Stylesheet not found!");
+            }
+            alert.show();
+
+            // Fermer l'alerte après 1 secondes
+            Timeline timeline = new Timeline(new KeyFrame(
+                    Duration.seconds(1),
+                    event -> alert.close()
+            ));
+            timeline.setCycleCount(1);
+            timeline.play();
         }
     }
 
