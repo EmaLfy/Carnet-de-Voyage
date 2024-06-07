@@ -30,6 +30,7 @@ public class Main extends Application {
         //this.carnet = new Carnet();
         Main.primaryStage = primaryStage;
         primaryStage.setTitle("-- Carnet de Voyage --");
+        primaryStage.setResizable(false);
         showFirstPage();
     }
 

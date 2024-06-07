@@ -13,6 +13,10 @@ public class ControleurFirstPage implements Observateur{
 
     private Carnet carnet;
 
+    // Constructeur par défaut
+    public ControleurFirstPage() {
+    }
+
     /**
      * Constructeur par défaut
      */
