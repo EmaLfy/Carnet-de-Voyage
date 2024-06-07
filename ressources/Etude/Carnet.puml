@@ -1,38 +1,42 @@
 @startuml
 
 class carnet.Page{
-    + LocalDate date
-    + String Titre
-    + String texte
-    + int numPage;
+    + LocalDate date;
+    + String Titre;
+    + String texte;
+    + String photoPath;
     - getTitre()
-    - setTitre()
+    - setTitre(String)
     - getTexte()
-    - setTexte()
+    - setTexte(String)
     - getDate()
-    - setDate()
+    - setDate(LocalDate)
+    - setPhotoPath(String)
+    - getPhotoPath()
 }
 
 class carnet.Carnet{
     + LocalDate debut;
     + int nbPages;
     + String filePath;
-    -  setData()
-    - ajouterPages()
-    - getPages()
+    + List<String> participants;
+    - setData(LocalDate, int)
+    - ajouterPages(int)
+    - getPages(int)
     - getNewPage()
     - getNbPages()
     - getDateDeb()
     - getPath()
-    - updateFromFile()
-    - saveToFile()
+    - getParticipants()
+    - ajouterParticipant(String)
+    - updateFromFile(File)
+    - saveToFile(String)
 
 }
 class carnet.SujetObserve{
     - ArrayList<Observateur> observateurs
     + void ajouterObservateur(Observateur)
     + void notifierObservateur()
-    - getObservateurs()
 }
 
 
@@ -51,21 +55,28 @@ controleur.ControleurVisuPage ..|> controleur.Observateur
 
 
 class controleur.ControleurFirstPage{
+    + Carnet carnet;
     - sortir()
     - toMenu()
+    - saveCarnet()
+    - reagir()
 }
 
 class controleur.ControleurMenu{
     + Carnet carnet;
     + Label date;
     + Label jours;
+    + TextField participantField;
+    + ListView<String> participantsList;
     - initialize()
     - getCarnet()
     - sortir()
     - toFirstPage()
     - toMenu()
     - toVisuPage()
-    - SaveCarnet()
+    - saveCarnet()
+    - ajouterParticipant()
+    - reagir()
 }
 
 class controleur.ControleurMenuPage{
@@ -73,6 +84,7 @@ class controleur.ControleurMenuPage{
     + DatePicker date;
     + TextField jours;
     - initialize()
+    - updateCarnet()
     - sortir()
     - toMenu()
     - toFirstPage()
@@ -81,6 +93,7 @@ class controleur.ControleurMenuPage{
     - saveCarnet()
     - chargerCarnet()
     - updateData()
+    - reagir()
 }
 
 class controleur.ControleurVisuPage{
@@ -89,13 +102,16 @@ class controleur.ControleurVisuPage{
     + Label titre;
     + Label texte;
     + Label date;
+    + ImageView photo;
     - initialize()
     - updateData()
+    - updateImage()
     - sortir()
     - toMenu()
     - toFirstPage()
     - suivant()
     - precedent()
+    - reagir()
 }
 
 
@@ -106,19 +122,33 @@ class controleur.ControleurPage{
     + TextField titre
     + TextField texte
     + Label date
+    + ImageView photo
     - initialize()
     - updateData()
+    - updateImage()
     - sortir()
     - toMenu()
     - toFirstPage()
     - suivant()
     - precedent()
     - save()
+    - choisirImage()
     - saveCarnet()
+    - reagir()
 }
 
 interface controleur.Observateur{
     + void reagir()
+}
+
+class outils.LocalDateAdapter{
+    - serialize(LocalDate, Type, JsonSerializationContext)
+    - deserialize(JsonElement, Type, JsonDeserializationContext)
+}
+
+class outils.TailleComposant{
+    - windHeight()
+    - windWidth()
 }
 
 

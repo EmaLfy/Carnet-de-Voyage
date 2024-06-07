@@ -198,6 +198,7 @@ public class ControleurPage implements Observateur{
      */
     @FXML
     public void choisirImage() {
+        save();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une Image");
         fileChooser.getExtensionFilters().addAll(

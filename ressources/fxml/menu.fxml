@@ -130,7 +130,7 @@
                               </Button>
                            </center>
                            <bottom>
-                              <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="332.0" style="-fx-background-color: #f8efcc;" text="Ouvrir .................................... 3" textFill="#863d0d" BorderPane.alignment="CENTER">
+                              <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="332.0" style="-fx-background-color: #f8efcc;" text="Ouvrir .................................... 3" textFill="#e0a886" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="Yrsa SemiBold" size="22.0" />
                                  </font>
