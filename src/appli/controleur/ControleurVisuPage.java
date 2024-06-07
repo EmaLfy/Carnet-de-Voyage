@@ -13,6 +13,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Classe ControleurVisuPage
+ * Contrôleur pour la page VisuPage
+ */
 public class ControleurVisuPage implements Observateur{
     private Carnet carnet;
     private int index;
@@ -29,12 +33,19 @@ public class ControleurVisuPage implements Observateur{
     @FXML
     private ImageView photo;
 
+    /**
+     * Constructeur par défaut
+     * @param carnetl Carnet
+     */
     public ControleurVisuPage(Carnet carnetl){
         this.carnet= carnetl;
         this.index=0;
         this.carnet.ajouterObservateur(this);
     }
 
+    /**
+     * Méthode pour aller à la page suivante
+     */
     @FXML
     public void suivant(){
         if(index<carnet.getNbPages()-1){
@@ -45,6 +56,9 @@ public class ControleurVisuPage implements Observateur{
         carnet.notifierObservateurs();
     }
 
+    /**
+     * Méthode pour aller à la page précédente
+     */
     @FXML
     public void precedent(){
         if(index==0){
@@ -55,11 +69,17 @@ public class ControleurVisuPage implements Observateur{
         carnet.notifierObservateurs();
     }
 
+    /**
+     * Méthode pour initialiser les données de la page
+     */
     public void initialize(){
         carnet.notifierObservateurs();
 
     }
 
+    /**
+     * Méthode pour mettre à jour les données de la page
+     */
     public void updateData(){
         titre.setText(carnet.getPage(this.index).getTitre());
         texte.setText(carnet.getPage(this.index).getTexte());
@@ -68,6 +88,9 @@ public class ControleurVisuPage implements Observateur{
         updateImage();
     }
 
+    /**
+     * Méthode pour mettre à jour l'image de la page
+     */
     private void updateImage() {
         String photoPath = this.carnet.getPage(this.index).getPhotoPath();
         Image image;
@@ -86,11 +109,18 @@ public class ControleurVisuPage implements Observateur{
         photo.setImage(image);
     }
 
+    /**
+     * Méthode pour sortir de l'application
+     */
     @FXML
     public void sortir() throws IOException {
         saveCarnet();
         System.exit(0);
     }
+
+    /**
+     * Méthode pour aller à la page Menu
+     */
     @FXML
     public void toMenu() {
         try {
@@ -99,6 +129,10 @@ public class ControleurVisuPage implements Observateur{
             e.printStackTrace();
         }
     }
+
+    /**
+     * Méthode pour aller à la page FirstPage
+     */
     public void toFirstPage(){
         try{
             Main.showFirstPage();
@@ -107,6 +141,9 @@ public class ControleurVisuPage implements Observateur{
         }
     }
 
+    /**
+     * Méthode pour sauvegarder le carnet
+     */
     public void saveCarnet() throws IOException {
         if (carnet != null) {
             if (carnet.getPath() != null) {
@@ -130,6 +167,9 @@ public class ControleurVisuPage implements Observateur{
         }
     }
 
+    /**
+     * Méthode pour réagir
+     */
     @Override
     public void reagir() {
         updateData();

@@ -4,7 +4,6 @@ import appli.outils.LocalDateAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import javax.lang.model.element.Modifier;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -13,6 +12,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe Carnet
+ * Représente un carnet de Voyage
+ */
 public class Carnet extends SujetObserve {
     private LocalDate debut;
     private Page[] pages;
@@ -20,10 +23,18 @@ public class Carnet extends SujetObserve {
     private String filePath;
     private List<String> participants;  // Liste des participants
 
+    /**
+     * Constructeur par défaut
+     */
     public Carnet(){
         this.participants = new ArrayList<>();
     }
 
+    /**
+     * Constructeur avec paramètres
+     * @param d Date de début du carnet
+     * @param nbJ Nombre de jours du carnet
+     */
     public Carnet(LocalDate d, int nbJ) {
         this.debut = d;
         this.nbPages = nbJ;
@@ -31,6 +42,11 @@ public class Carnet extends SujetObserve {
         this.ajouterPages(this.nbPages);
     }
 
+    /**
+     * Méthode pour initialiser les données du carnet
+     * @param d Date de début du carnet
+     * @param nbj Nombre de jours du carnet
+     */
     public void setData(LocalDate d, int nbj) {
         this.debut = d;
         this.nbPages = nbj;
@@ -38,6 +54,10 @@ public class Carnet extends SujetObserve {
         this.ajouterPages(this.nbPages);
     }
 
+    /**
+     * Méthode pour ajouter des pages au carnet
+     * @param nbPages Nombre de pages à ajouter
+     */
     public void ajouterPages(int nbPages) {
         pages = new Page[nbPages];
         for (int i = 0; i < nbPages; i++) {
@@ -45,6 +65,10 @@ public class Carnet extends SujetObserve {
         }
     }
 
+    /**
+     * Méthode pour recuperer une page du carnet
+     * @param index int
+     */
     public Page getPage(int index) {
         if (index >= 0 && index < nbPages) {
             return pages[index];
@@ -52,39 +76,68 @@ public class Carnet extends SujetObserve {
         return null;
     }
 
+    /**
+     * Méthode pour recuperer la première page du carnet
+     */
     public Page getNewPage() {
         return pages[0];
     }
 
+    /**
+     * Méthode pour recuperer le nombre de pages du carnet
+     */
     public int getNbPages() {
         return nbPages;
     }
 
+    /**
+     * Méthode pour recuperer la date de début du carnet
+     */
     public LocalDate getDateDeb() {
         return debut;
     }
 
+    /**
+     * Méthode pour recuperer le chemin du fichier
+     */
     public String getPath() {
         return filePath;
     }
 
+    /**
+     * Méthode pour recuperer la date de fin du carnet
+     */
     public LocalDate getDateFin() {
         return debut.plusDays(nbPages);
     }
 
+    /**
+     * Méthode pour recuperer la date d'une page du carnet
+     * @param index int
+     */
     public LocalDate getDatePage(int index) {
         return debut.plusDays(index);
     }
 
+    /**
+     * Méthode pour recuperer la liste des participants
+     */
     public List<String> getParticipants() {
         return participants;
     }
 
+    /**
+     * Méthode pour ajouter un participant
+     * @param participant String
+     */
     public void ajouterParticipant(String participant) {
         this.participants.add(participant);
     }
 
-    // Méthode pour charger les données d'un fichier et les mettre à jour dans l'objet actuel
+    /**
+     * Méthode charger les données d'un fichier de sauvegarde
+     * @param file File
+     */
     public void updateFromFile(File file) throws IOException {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
@@ -115,7 +168,10 @@ public class Carnet extends SujetObserve {
         }
     }
 
-    // Méthode pour sauvegarder dans un fichier
+    /**
+     * Méthode pour sauvegarder les données dans un fichier
+     * @param filename String
+     */
     public void saveToFile(String filename) throws IOException {
         if (!filename.toLowerCase().endsWith(".json")) {
             filename += ".json";
@@ -130,7 +186,9 @@ public class Carnet extends SujetObserve {
         }
         this.filePath = filename; // Mettre à jour le chemin du fichier
     }
-
+    /**
+     * Méthode pour afficher les informations du carnet
+     */
     @Override
     public String toString() {
         return "Carnet{" +

@@ -21,6 +21,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Classe ControleurPage
+ * Contrôleur pour la page Page
+ */
 public class ControleurPage implements Observateur{
     private Carnet carnet;
     private int index;
@@ -37,17 +41,27 @@ public class ControleurPage implements Observateur{
     @FXML
     private ImageView photo;
 
+    /**
+     * Constructeur par défaut
+     * @param carnetl Carnet
+     */
     public ControleurPage(Carnet carnetl){
         this.carnet = carnetl;
         this.index = 0; // Initialiser l'index à 0
         this.carnet.ajouterObservateur(this);
     }
 
+    /**
+     * Méthode pour initialiser les données de la page
+     */
     public void initialize(){
         updateData();
         photo.setOnMouseClicked(event -> choisirImage());
     }
 
+    /**
+     * Méthode pour mettre à jour les données de la page
+     */
     public void updateData(){
         Page currentPage = carnet.getPage(this.index);
         if (currentPage != null) {
@@ -59,6 +73,9 @@ public class ControleurPage implements Observateur{
         }
     }
 
+    /**
+     * Méthode pour mettre à jour l'image de la page
+     */
     private void updateImage() {
         String photoPath = this.carnet.getPage(this.index).getPhotoPath();
         Image image;
@@ -77,13 +94,17 @@ public class ControleurPage implements Observateur{
         photo.setImage(image);
     }
 
-
+    /**
+     * Méthode pour sortir de l'application
+     */
     @FXML
     public void sortir() throws IOException {
         saveCarnet();
         System.exit(0);
     }
-
+    /**
+     * Méthode pour aller à la page Menu
+     */
     @FXML
     public void toMenu() {
         try {
@@ -92,7 +113,9 @@ public class ControleurPage implements Observateur{
             e.printStackTrace();
         }
     }
-
+    /**
+     * Méthode pour aller à la page FirstPage
+     */
     public void toFirstPage(){
         try {
             Main.showFirstPage();
@@ -101,6 +124,9 @@ public class ControleurPage implements Observateur{
         }
     }
 
+    /**
+     * Méthode pour aller à la page suivante
+     */
     @FXML
     public void suivant(){
         if (index < carnet.getNbPages() - 1) {
@@ -109,9 +135,11 @@ public class ControleurPage implements Observateur{
             index = 0;
         }
         carnet.notifierObservateurs();
-        //reagir();
     }
 
+    /**
+     * Méthode pour aller à la page précédente
+     */
     @FXML
     public void precedent(){
         if (index == 0) {
@@ -122,6 +150,9 @@ public class ControleurPage implements Observateur{
         carnet.notifierObservateurs();
     }
 
+    /**
+     * Méthode pour sauvegarder la page dans le carnet
+     */
     @FXML
     public void save() {
         String titreP = titre.getText();
@@ -162,6 +193,9 @@ public class ControleurPage implements Observateur{
         }
     }
 
+    /**
+     * Méthode pour choisir une image via un explorateur de fichier
+     */
     @FXML
     public void choisirImage() {
         FileChooser fileChooser = new FileChooser();
@@ -178,6 +212,9 @@ public class ControleurPage implements Observateur{
         }
     }
 
+    /**
+     * Méthode pour sauvegarder le carnet (json)
+     */
     public void saveCarnet() throws IOException {
         if (carnet != null) {
             if (carnet.getPath() != null) {
@@ -199,6 +236,9 @@ public class ControleurPage implements Observateur{
         }
     }
 
+    /**
+     * Méthode pour réagir
+     */
     @Override
     public void reagir() {
         updateData();

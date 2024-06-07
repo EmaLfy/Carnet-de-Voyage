@@ -1,21 +1,22 @@
 package appli.controleur;
 
 import appli.carnet.Carnet;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import appli.Main;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 
+/**
+ * Classe ControleurMenuPage
+ * Contrôleur pour la page MenuPage
+ */
 public class ControleurMenuPage implements Observateur{
     private Carnet carnet;
 
@@ -24,12 +25,17 @@ public class ControleurMenuPage implements Observateur{
 
     @FXML
     private TextField jours;
-
+    /**
+     * Constructeur par défaut
+     * @param carnetl Carnet
+     */
     public ControleurMenuPage(Carnet carnetl) {
         this.carnet = carnetl;
         this.carnet.ajouterObservateur(this);
     }
-
+    /**
+     * Méthode pour mettre à jour le carnet
+     */
     @FXML
     public void updateCarnet() {
         LocalDate d = date.getValue();
@@ -66,7 +72,10 @@ public class ControleurMenuPage implements Observateur{
         carnet.setData(d, nbJours);
         toMenu();
     }
-
+    /**
+     * Méthode pour afficher un message d'erreur
+     * @param message String
+     */
     private void afficherMessageErreur(String message) {
         // Afficher le message d'erreur dans une boîte de dialogue ou une alerte
         // par exemple :
@@ -84,7 +93,9 @@ public class ControleurMenuPage implements Observateur{
         alert.show();
     }
 
-
+    /**
+     * Méthode pour aller à la page FirstPage
+     */
     public void toFirstPage(){
         try{
             Main.showFirstPage();
@@ -93,25 +104,24 @@ public class ControleurMenuPage implements Observateur{
         }
     }
 
-
-//    public void toNewPage(){
-//        try{
-//            Main.showNewPage();
-//        } catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
-
+    /**
+     * Méthode pour sortir de l'application
+     */
     @FXML
     public void sortir() throws IOException {
         saveCarnet();
         System.exit(0);
     }
 
-    // Méthode appelée lors du chargement de la page
+    /**
+     * Méthode pour initialiser les données
+     */
     public void initialize() {
-
     }
+
+    /**
+     * Méthode pour aller à la page Menu
+     */
     public void toMenu(){
         try{
             Main.showMenu();
@@ -120,7 +130,9 @@ public class ControleurMenuPage implements Observateur{
         }
     }
 
-
+    /**
+     * Méthode pour sauvegarder le carnet
+     */
     public void saveCarnet() throws IOException {
         if (carnet != null) {
             if (carnet.getPath() != null) {
@@ -144,7 +156,9 @@ public class ControleurMenuPage implements Observateur{
         }
     }
 
-
+    /**
+     * Méthode pour charger un carnet
+     */
     @FXML
     public void chargerCarnet() throws IOException {
         FileChooser choixfichier = new FileChooser();
@@ -161,7 +175,9 @@ public class ControleurMenuPage implements Observateur{
         }
         toMenu();
     }
-
+    /**
+     * Méthode pour réagir
+     */
     @Override
     public void reagir() {
 
