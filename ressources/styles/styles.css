@@ -97,3 +97,44 @@
     -fx-padding: 5px;
 }
 
+/* Style pour la ListView */
+.list-view {
+    -fx-background-color: #f8efcc;
+    -fx-padding: 5px;
+    -fx-border-color: #863d0d;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Style pour les cellules de la ListView */
+.list-view .list-cell {
+    -fx-background-color: #f8efcc;
+    -fx-text-fill: #863d0d;
+    -fx-padding: 5px;
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: #db9159;
+    -fx-text-fill: #fbd763;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #f8efcc;
+    -fx-text-fill: #863d0d;
+}
+
+/* Style pour les boutons */
+.button {
+    -fx-background-color: #db9159;
+    -fx-text-fill: #fbd763;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-border-color: #863d0d;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: #f8efcc;
+    -fx-text-fill: #863d0d;
+}

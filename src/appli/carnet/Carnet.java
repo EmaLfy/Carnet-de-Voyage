@@ -1,6 +1,5 @@
 package appli.carnet;
 
-
 import appli.outils.LocalDateAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -11,28 +10,31 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Carnet extends SujetObserve {
     private LocalDate debut;
     private Page[] pages;
     private int nbPages;
     private String filePath;
+    private List<String> participants;  // Liste des participants
 
     public Carnet(){
+        this.participants = new ArrayList<>();
     }
 
     public Carnet(LocalDate d, int nbJ) {
-        this.debut=d;
+        this.debut = d;
         this.nbPages = nbJ;
+        this.participants = new ArrayList<>();
         this.ajouterPages(this.nbPages);
     }
 
     public void setData(LocalDate d, int nbj) {
-        //System.out.println("\nCréation d'un carnet");
         this.debut = d;
-        //System.out.println("Date de debut : " + this.debut);
         this.nbPages = nbj;
-        //System.out.println("Nombre de pages : " + this.nbPages);
+        this.participants = new ArrayList<>();
         this.ajouterPages(this.nbPages);
     }
 
@@ -50,7 +52,7 @@ public class Carnet extends SujetObserve {
         return null;
     }
 
-    public Page getNewPage(){
+    public Page getNewPage() {
         return pages[0];
     }
 
@@ -74,6 +76,14 @@ public class Carnet extends SujetObserve {
         return debut.plusDays(index);
     }
 
+    public List<String> getParticipants() {
+        return participants;
+    }
+
+    public void ajouterParticipant(String participant) {
+        this.participants.add(participant);
+    }
+
     // Méthode pour charger les données d'un fichier et les mettre à jour dans l'objet actuel
     public void updateFromFile(File file) throws IOException {
         Gson gson = new GsonBuilder()
@@ -82,12 +92,12 @@ public class Carnet extends SujetObserve {
         try (FileReader reader = new FileReader(file)) {
             Carnet tempCarnet = gson.fromJson(reader, Carnet.class);
             this.filePath = file.getAbsolutePath(); // Mettre à jour le chemin du fichier
-            //System.out.println("Carnet loaded from file: " + this.filePath);
 
             // Mettre à jour les informations du carnet actuel avec les données chargées
             this.debut = tempCarnet.debut;
             this.nbPages = tempCarnet.nbPages;
             this.pages = tempCarnet.pages;
+            this.participants = tempCarnet.participants;
 
             // Assurer que les pages sont correctement initialisées
             if (this.pages == null || this.pages.length != this.nbPages) {
@@ -105,7 +115,6 @@ public class Carnet extends SujetObserve {
         }
     }
 
-
     // Méthode pour sauvegarder dans un fichier
     public void saveToFile(String filename) throws IOException {
         if (!filename.toLowerCase().endsWith(".json")) {
@@ -122,16 +131,13 @@ public class Carnet extends SujetObserve {
         this.filePath = filename; // Mettre à jour le chemin du fichier
     }
 
-
-
-
-
-
     @Override
     public String toString() {
         return "Carnet{" +
                 "debut=" + debut +
                 ", nbPages=" + nbPages +
+                ", participants=" + participants +
                 '}';
     }
 }
+

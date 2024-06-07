@@ -4,13 +4,15 @@ import appli.Main;
 import appli.carnet.Carnet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
-public class ControleurMenu implements Observateur{
+public class ControleurMenu implements Observateur {
     private Carnet carnet;
 
     @FXML
@@ -19,17 +21,26 @@ public class ControleurMenu implements Observateur{
     @FXML
     private Label jours;
 
-    public ControleurMenu(Carnet carnetl){
-        this.carnet=carnetl;
+    @FXML
+    private TextField participantField;
+
+    @FXML
+    private ListView<String> participantsList;
+
+    public ControleurMenu(Carnet carnetl) {
+        this.carnet = carnetl;
         this.carnet.ajouterObservateur(this);
     }
 
-    public void initialize(){
+    @FXML
+    public void initialize() {
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         date.setText(carnet.getDateDeb().format(pattern));
-        String nbJ= String.valueOf(carnet.getNbPages());
+        String nbJ = String.valueOf(carnet.getNbPages());
         jours.setText(nbJ);
 
+        // Initialiser la ListView avec les participants actuels
+        participantsList.getItems().setAll(carnet.getParticipants());
     }
 
     public Carnet getCarnet() {
@@ -43,27 +54,28 @@ public class ControleurMenu implements Observateur{
     }
 
     @FXML
-    public void toNewPage(){
-        try{
+    public void toNewPage() {
+        try {
             Main.showNewPage();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void toVisuPage(){
-        try{
+    public void toVisuPage() {
+        try {
             Main.showVisuPage();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void toFirstPage(){
-        try{
+    @FXML
+    public void toFirstPage() {
+        try {
             Main.showFirstPage();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -71,25 +83,37 @@ public class ControleurMenu implements Observateur{
     @FXML
     public void saveCarnet() throws IOException {
         if (carnet != null) {
-            // Création d'un FileChooser pour sélectionner ou spécifier le fichier de sauvegarde
-            FileChooser choixfichier = new FileChooser();
-            choixfichier.setTitle("Sauvegarder votre Carnet");
-            choixfichier.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Fichiers JSON", "*.json"),
-                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
+            if (carnet.getPath() != null) {
+                // Le carnet a déjà été sauvegardé, on utilise le chemin existant
+                carnet.saveToFile(carnet.getPath());
+            } else {
+                FileChooser choixfichier = new FileChooser();
+                choixfichier.setTitle("Sauvegarder votre Carnet");
+                choixfichier.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("Fichiers JSON", "*.json"),
+                        new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
 
-            File selectedFile = choixfichier.showSaveDialog(date.getScene().getWindow());
-            if (selectedFile != null) {
-                // Sauvegarde du carnet dans le fichier sélectionné
-                carnet.saveToFile(selectedFile.getAbsolutePath());
+                File selectedFile = choixfichier.showSaveDialog(date.getScene().getWindow());
+                if (selectedFile != null) {
+                    carnet.saveToFile(selectedFile.getAbsolutePath());
+                }
             }
         }
     }
 
-
+    @FXML
+    public void ajouterParticipant() {
+        String participantName = participantField.getText().trim();
+        if (!participantName.isEmpty()) {
+            carnet.ajouterParticipant(participantName);
+            participantField.clear();
+        }
+        carnet.notifierObservateurs();
+    }
 
     @Override
     public void reagir() {
-
+        participantsList.getItems().setAll(carnet.getParticipants());
     }
 }
+
