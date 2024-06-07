@@ -2,7 +2,7 @@
 
 Compilation du projet:
 
-java --module-path /chemin/vers/librairie/javafx/lib --add-modules javafx.controls,javafx.fxml -jar CarnetVoyage.jar
+java --module-path /chemin/vers/librairie/javafx/lib --add-modules javafx.controls,javafx.fxml -jar carnet.jar
 
 Raccourcis :
 
